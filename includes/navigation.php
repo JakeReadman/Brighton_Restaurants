@@ -14,8 +14,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <i
+                            class="fa fa-fw fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
 
-                <?php 
+                        <?php 
                     
                         $query = "SELECT * FROM categories";
                         $select_all_categories_query = mysqli_query($connection, $query);
@@ -27,6 +31,8 @@
                         }
                     
                     ?>
+                    </ul>
+                </li>
                 <li>
                     <a href="admin">Admin</a>
                 </li>
@@ -48,9 +54,6 @@
                 
                 ?>
 
-                <!-- <li>
-                    <a href="#">Contact</a>
-                </li> -->
             </ul>
         </div>
         <!-- /.navbar-collapse -->
