@@ -40,7 +40,7 @@
 
                 
 
-                if(empty(mysqli_fetch_assoc($result))) {
+                if(mysqli_num_rows($result) < 1) {
                     echo "<h1 class='page-header'>No Posts to Display</h1>";
                 } else {
                     echo "<h1 class='page-header'>Brighton Restaurant Reviews</h1>";

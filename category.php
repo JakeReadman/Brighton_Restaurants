@@ -27,7 +27,7 @@
 
                     
 
-                    if(mysqli_num_rows($result) == 0) {
+                    if(mysqli_num_rows($result) < 1) {
                         echo "<h1 class='page-header'>No Posts for {$category_title} Category</h1>";
                     } else {
                         echo "<h1 class='page-header'>Category: {$category_title}</h1>";
