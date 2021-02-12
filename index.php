@@ -29,7 +29,7 @@
                     $page_1 = ($page * $per_page) - $per_page;
                 }
 
-                $post_query_count = "SELECT * FROM posts";
+                $post_query_count = "SELECT * FROM posts WHERE post_status = 'published'";
                 $find_count_query = mysqli_query($connection, $post_query_count);
                 $count = mysqli_num_rows($find_count_query);
 
@@ -38,6 +38,13 @@
                 $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_1, $per_page";
                 $result = mysqli_query($connection, $query);
 
+                
+
+                if(empty(mysqli_fetch_assoc($result))) {
+                    echo "<h1 class='page-header'>No Posts to Display</h1>";
+                } else {
+                    echo "<h1 class='page-header'>Brighton Restaurant Reviews</h1>";
+                }
                 
                 while($row = mysqli_fetch_assoc($result)) {
                     $post_id = escape($row['post_id']);
@@ -53,10 +60,7 @@
                     
             ?>
 
-            <h1 class="page-header">
-                <?php  ?>
-                <small>Secondary Text</small>
-            </h1>
+
 
             <!-- First Blog Post -->
             <h2>
