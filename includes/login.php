@@ -1,4 +1,5 @@
 <?php include "db.php"; ?>
+<?php include "../admin/includes/functions.php" ?>
 <?php session_start(); ?>
 
 <?php 
