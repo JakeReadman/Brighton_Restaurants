@@ -152,6 +152,14 @@ function selectQuery($table) {
     return $select_query;
 }
 
+function selectStatusQuery($table, $column, $status) {
+    global $connection;
+    $query = "SELECT * FROM $table WHERE $column = '$status'";
+    $select_query = mysqli_query($connection, $query);
+    confirmQuery($select_query);
+    return $select_query;
+}
+
 function numRowQuery($table) {
     global $connection;
     $select_query = selectQuery($table);

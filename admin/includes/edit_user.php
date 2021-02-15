@@ -3,8 +3,7 @@
     if(isset($_GET['edit_user'])) {
         $edit_user_id = escape($_GET['edit_user']);
 
-        $query = "SELECT * FROM users WHERE user_id = $edit_user_id";
-        $edit_user_query = mysqli_query($connection, $query);
+        $edit_user_query = selectStatusQuery('users', 'user_id', $edit_user_id);
 
         while($row = mysqli_fetch_assoc($edit_user_query)) {
 
@@ -32,8 +31,7 @@
 
             if(!empty($user_password)) { 
 
-                $password_query = "SELECT user_password FROM users WHERE user_id =  $edit_user_id";
-                $get_user_query = mysqli_query($connection, $password_query);
+                $get_user_query = selectStatusQuery('users', 'user_id', $edit_user_id);
                 confirmQuery($get_user_query);
         
                 $row = mysqli_fetch_array($get_user_query);
@@ -64,12 +62,7 @@
 
 ?>
 
-
 <form action="" method="post" enctype="multipart/form-data">
-
-    <?php
-
-    ?>
 
     <div class="form-group">
         <label for="firstname">First Name</label>
@@ -80,7 +73,6 @@
         <label for="lastname">Last Name</label>
         <input type="text" class="form-control" name="user_lastname" value="<?php echo $edit_user_lastname ?>">
     </div>
-
 
     <div class="form-group">
         <label for="role">Role</label>

@@ -4,8 +4,7 @@
         $p_id = escape($_GET['p_id']);
     }
 
-    $query = "SELECT * FROM posts WHERE post_id = $p_id ";
-    $select_posts_by_id = mysqli_query($connection, $query);
+    $select_posts_by_id = selectStatusQuery('posts', 'post_id', $p_id);
 
     while($row = mysqli_fetch_assoc($select_posts_by_id)) {
         $post_id = escape($row['post_id']);
@@ -34,8 +33,7 @@
         move_uploaded_file($post_image_temp, "../img/$post_image");
 
         if(empty($post_image)) {
-            $query = "SELECT * FROM posts WHERE post_id = $p_id";
-            $select_image = mysqli_query($connection, $query);
+            $select_image = selectStatusQuery('posts', 'post_id', $p_id);
 
             while($row = mysqli_fetch_array($select_image)) {
                 $post_image = escape($row['post_image']);
@@ -78,8 +76,7 @@
 
             <?php 
 
-                $query = "SELECT * FROM categories";
-                $select_categories = mysqli_query($connection, $query);
+                $select_categories = selectQuery('categories');
 
                 confirmQuery($select_categories);
  
@@ -107,8 +104,7 @@
         <select class="form-control" name="post_user" id="">
             <?php 
         
-                $query = "SELECT * FROM users";
-                $select_users = mysqli_query($connection, $query);
+                $select_users = selectQuery('users');
                 
                 confirmQuery($select_users);
 
@@ -130,11 +126,6 @@
 
         </select>
     </div>
-
-    <!-- <div class="form-group">
-        <label for="title">Post Author</label>
-        <input type="text" value="<?php //echo $post_author ?>" class="form-control" name="post_author">
-    </div> -->
 
     <div class="form-group">
         <label for="post_status">Role</label>
@@ -174,6 +165,5 @@
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="update_post" value="Update Post">
     </div>
-
 
 </form>

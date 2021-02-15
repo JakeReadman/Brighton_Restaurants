@@ -25,8 +25,7 @@
                     break;
 
                 case 'clone':
-                    $query = "SELECT * FROM posts WHERE post_id = {$checkBox_post_id}";
-                    $select_post_query = mysqli_query($connection, $query);
+                    $select_post_query = selectStatusQuery('posts', 'post_id', $checkBox_post_id);
                 
                     while($row = mysqli_fetch_assoc($select_post_query)) {
                         $post_title = escape($row['post_title']);
@@ -113,8 +112,7 @@
 
                 echo "<td><a href='../post.php?p_id={$post_id}'>{$post_title}</a></td>";
 
-                $query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
-                $select_categories_id = mysqli_query($connection, $query);
+                $select_categories_id = selectStatusQuery('categories', 'cat_id', $post_category_id);
 
                 while($row = mysqli_fetch_assoc($select_categories_id)) {
                     $cat_id = escape($row['cat_id']);
@@ -128,8 +126,7 @@
                 echo "<td><img width='100px' class='img-responsive' src='../img/{$post_image}' alt='Post Image'</td>";
                 echo "<td>{$post_tags}</td>";
 
-                $query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
-                $send_comment_query = mysqli_query($connection, $query);
+                $send_comment_query = selectStatusQuery('comments', 'comment_post_id', $post_id);
 
                 $row = mysqli_fetch_array($send_comment_query);
 

@@ -13,8 +13,7 @@
 
         <?php
                         
-            $query = "SELECT * FROM users";
-            $select_users = mysqli_query($connection, $query);
+            $select_users = selectQuery('users');
         
             while($row = mysqli_fetch_assoc($select_users)) {
                 $user_id = escape($row['user_id']);

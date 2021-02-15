@@ -10,8 +10,6 @@
 
         // $user_image = escape($_FILES['image']['name']);
         // $user_image_temp = escape($_FILES['image']['tmp_name']);
-
-
         // move_uploaded_file($user_image_temp, "../img/$user_image");
 
         $password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
@@ -24,13 +22,11 @@
 
         $user_id = mysqli_insert_id($connection);
 
-
         echo "<p class='bg-success'>User Created. <a href='users.php'>View Users</a></p>";
 
     }
 
 ?>
-
 
 <form action="" method="post" enctype="multipart/form-data">
 
@@ -43,7 +39,6 @@
         <label for="lastname">Last Name</label>
         <input type="text" class="form-control" name="user_lastname">
     </div>
-
 
     <div class="form-group">
         <label for="user_role">Role</label>
@@ -72,15 +67,8 @@
 
     </div>
 
-    <!-- <div class="form-group">
-        <label for="post_image">Post Image</label>
-        <input type="file" name="image">
-    </div> -->
-
-
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="create_user" value="Create User">
     </div>
-
 
 </form>
