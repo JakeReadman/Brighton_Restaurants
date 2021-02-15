@@ -13,6 +13,7 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
+
             <?php 
 
                 if(isset($_GET['p_id'])) {
@@ -21,8 +22,22 @@
                     $view_query = "UPDATE posts SET post_views = post_views + 1 WHERE post_id = $selected_post_id";
                     $send_query = mysqli_query($connection, $view_query);
 
-                    $query = "SELECT * FROM posts WHERE post_id = {$selected_post_id}";
+                    if(!$send_query) {
+                        die("Query Failed" . mysqli_error($connection));
+                    }
+
+                    if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+                        $query = "SELECT * FROM posts WHERE post_id = {$selected_post_id}";
+                    } else {
+                        $query = "SELECT * FROM posts WHERE post_id = {$selected_post_id} AND post_status = 'published'";
+                    }
                     $result = mysqli_query($connection, $query);
+
+                    if(mysqli_num_rows($result) < 1) {
+                        echo "<script>alert('Post Not Published')</script>";
+                        header("Location: index.php");
+                    }
+
 
                     while($row = mysqli_fetch_assoc($result)) {
                         $post_title = escape($row['post_title']);
@@ -33,14 +48,10 @@
             ?>
 
             <h1 class="page-header">
-                Page Heading
-                <small>Secondary Text</small>
+                <?php echo $post_title ?>
             </h1>
 
-            <!-- First Blog Post -->
-            <h2>
-                <?php echo $post_title ?>
-            </h2>
+            <!-- First Post -->
             <p class="lead">
                 by <a href="index.php"><?php echo $post_user ?></a>
             </p>
@@ -53,12 +64,11 @@
             <hr>
 
             <?php 
-                } }else {
-                    header("Location: index.php");
-                }            
+                } 
+                    
             ?>
 
-            <!-- Blog Comments -->
+            <!-- Comments -->
 
             <?php 
             
@@ -79,16 +89,13 @@
                             die('QUERY FAILED' . mysqli_error($connection));
                         }
 
-                        // $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = {$selected_comment_id}";
-                        // $update_comment_count = mysqli_query($connection, $query);
+                       
                     } else {
                         echo "<script>alert('Fields Cannot Be Empty')</script>";
                     }
                 }
             
             ?>
-
-
 
             <!-- Comments Form -->
             <div class="well">
@@ -145,7 +152,10 @@
             </div>
 
             <?php  
-                }
+                }  
+            } else {
+                    header("Location: index.php");
+                }   
             ?>
 
 
