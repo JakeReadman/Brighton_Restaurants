@@ -34,13 +34,10 @@
                                 <div class="col-xs-9 text-right">
 
                                     <?php 
-                                
-                                        $query = "SELECT * FROM posts WHERE post_status = 'published'";
-                                        $select_active_posts = mysqli_query($connection, $query);
 
-                                        $active_post_count = mysqli_num_rows($select_active_posts);
+                                        $post_count = numRowQuery('posts');
 
-                                        echo "<div class='huge'>{$active_post_count}</div>";
+                                        echo "<div class='huge'>{$post_count}</div>";
                                     
                                 
                                     ?>
@@ -69,14 +66,10 @@
 
                                     <?php 
                                     
-                                        $query = "SELECT * FROM comments WHERE comment_post_status = 'approved'";
-                                        $select_approved_comments = mysqli_query($connection, $query);
+                                        $comment_count = numRowQuery('comments');
 
-                                        $approved_comment_count = mysqli_num_rows($select_approved_comments);
-
-                                        echo "<div class='huge'>{$approved_comment_count}</div>";
+                                        echo "<div class='huge'>{$comment_count}</div>";
                                     
-                                
                                     ?>
 
                                     <div>Comments</div>
@@ -103,14 +96,10 @@
 
                                     <?php 
                                     
-                                        $query = "SELECT * FROM users WHERE user_role = 'admin'";
-                                        $select_admin_users = mysqli_query($connection, $query);
+                                        $user_count = numRowQuery('users');
 
-                                        $user_admin_count = mysqli_num_rows($select_admin_users);
-
-                                        echo "<div class='huge'>{$user_admin_count}</div>";
+                                        echo "<div class='huge'>{$user_count}</div>";
                                     
-                                
                                     ?>
 
                                     <div> Users</div>
@@ -136,10 +125,9 @@
                                 <div class="col-xs-9 text-right">
                                     <?php 
                                     
-                                        $query = "SELECT * FROM categories";
-                                        $select_all_categories = mysqli_query($connection, $query);
+                                        
 
-                                        $category_count = mysqli_num_rows($select_all_categories);
+                                        $category_count = numRowQuery('categories');
 
                                         echo "<div class='huge'>{$category_count}</div>";
                                         
@@ -161,26 +149,6 @@
             </div>
             <!-- /.row -->
 
-            <?php 
-                
-                $query = "SELECT * FROM posts WHERE post_status = 'draft'";
-                $select_all_draft_posts = mysqli_query($connection, $query);
-                $post_draft_count = mysqli_num_rows($select_all_draft_posts);
-
-                $query = "SELECT * FROM comments WHERE comment_post_status = 'rejected'";
-                $select_all_rejected_comments = mysqli_query($connection, $query);
-                $rejected_comment_count = mysqli_num_rows($select_all_rejected_comments);
-
-                $query = "SELECT * FROM comments WHERE comment_post_status = 'pending'";
-                $select_all_pending_comments = mysqli_query($connection, $query);
-                $pending_comment_count = mysqli_num_rows($select_all_pending_comments);
-
-                $query = "SELECT * FROM users WHERE user_role = 'subscriber'";
-                $select_all_subscriber_users = mysqli_query($connection, $query);
-                $user_subscriber_count = mysqli_num_rows($select_all_subscriber_users);
-            
-            ?>
-
             <div class="row">
 
                 <script type="text/javascript">
@@ -195,8 +163,8 @@
 
                         <?php 
                         
-                            $element_text = ['Active Posts', 'Draft Posts', 'Approved Comments', 'Rejected', 'Pending Comments', 'Admins', 'Subscribers', 'Categories'];
-                            $element_count = [$active_post_count, $post_draft_count, $approved_comment_count, $rejected_comment_count, $pending_comment_count, $user_admin_count, $user_subscriber_count, $category_count];
+                            $element_text = ['Posts', 'Comments', 'Users', 'Categories'];
+                            $element_count = [$post_count, $comment_count, $user_count, $category_count];
 
                             for($i = 0; $i < count($element_count); $i++) {
                                 echo "['{$element_text[$i]}'" . " ," . "{$element_count[$i]}],";

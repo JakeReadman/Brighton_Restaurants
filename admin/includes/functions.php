@@ -102,4 +102,58 @@ function confirmQuery($result) {
     }
 }
 
+function approveComment() {
+    global $connection;
+    
+    if(isset($_GET['approve'])) {
+        $approve_comment_id = escape($_GET['approve']);
+
+        $query = "UPDATE comments SET comment_post_status = 'approved' WHERE comment_id = $approve_comment_id";
+
+        $approve_comment_query = mysqli_query($connection, $query);
+
+        header("Location: comments.php");
+    }
+}
+
+function rejectComment() {
+    global $connection;
+    
+    if(isset($_GET['reject'])) {
+        $reject_comment_id = escape($_GET['reject']);
+
+        $query = "UPDATE comments SET comment_post_status = 'rejected' WHERE comment_id = $reject_comment_id";
+
+        $reject_comment_query = mysqli_query($connection, $query);
+
+        header("Location: comments.php");
+    }
+}
+
+function deleteComment() {
+    global $connection;
+    
+    if(isset($_GET['delete'])) {
+        $delete_comment_id = escape($_GET['delete']);
+
+        $query = "DELETE FROM comments WHERE comment_id = $delete_comment_id";
+
+        $delete_comment_query = mysqli_query($connection, $query);
+
+        header("Location: comments.php");
+    }
+}
+
+function numRowQuery($table) {
+    global $connection;
+    $query = "SELECT * FROM " . $table;
+    $select_query = mysqli_query($connection, $query);
+    $result = mysqli_num_rows($select_query);
+
+    confirmQuery($result);
+
+    return $result;
+}
+
+
 ?>

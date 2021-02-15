@@ -77,34 +77,8 @@
 
 <?php 
 
-    if(isset($_GET['approve'])) {
-        $approve_comment_id = escape($_GET['approve']);
-
-        $query = "UPDATE comments SET comment_post_status = 'approved' WHERE comment_id = $approve_comment_id";
-
-        $approve_comment_query = mysqli_query($connection, $query);
-
-        header("Location: comments.php");
-    }
-
-    if(isset($_GET['reject'])) {
-        $reject_comment_id = escape($_GET['reject']);
-
-        $query = "UPDATE comments SET comment_post_status = 'rejected' WHERE comment_id = $reject_comment_id";
-
-        $reject_comment_query = mysqli_query($connection, $query);
-
-        header("Location: comments.php");
-    }
-
-    if(isset($_GET['delete'])) {
-        $delete_comment_id = escape($_GET['delete']);
-
-        $query = "DELETE FROM comments WHERE comment_id = $delete_comment_id";
-
-        $delete_comment_query = mysqli_query($connection, $query);
-
-        header("Location: comments.php");
-    }
+   approveComment();
+   rejectComment();
+   deleteComment();
 
 ?>
