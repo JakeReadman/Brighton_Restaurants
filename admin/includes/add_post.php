@@ -45,20 +45,14 @@
 
             <?php 
         
-            $query = "SELECT * FROM categories";
-            $select_categories = mysqli_query($connection,$query);
+            $select_categories = selectQuery('categories');
             
-            confirmQuery($select_categories);
-
-
             while($row = mysqli_fetch_assoc($select_categories )) {
             $cat_id = escape($row['cat_id']);
             $cat_title = escape($row['cat_title']);
-                
-                
+                    
                 echo "<option value='$cat_id'>{$cat_title}</option>";
-            
-                
+                   
             }
         
         ?>
@@ -76,21 +70,15 @@
             <option value="">Select User</option>
             <?php 
         
-                $query = "SELECT * FROM users";
-                $select_users = mysqli_query($connection,$query);
+                $select_users = selectQuery('users');
                 
-                confirmQuery($select_users);
-
-
                 while($row = mysqli_fetch_assoc($select_users )) {
                 $user_id = escape($row['user_id']);
                 $username = escape($row['username']);
                 $user_firstname = escape($row['user_firstname']);
                 $user_lastname = escape($row['user_lastname']);
                     
-                    
                     echo "<option value='$username'>{$username}</option>";
-                
                     
                 }
             
@@ -98,13 +86,6 @@
 
         </select>
     </div>
-
-    <!-- 
-    <div class="form-group">
-        <label for="title">Post Author</label>
-        <input type="text" class="form-control" name="author">
-    </div> -->
-
 
     <div class="form-group">
         <label for="post_status">Post Status</label>
@@ -114,8 +95,6 @@
             <option value="draft">Draft</option>
         </select>
     </div>
-
-
 
     <div class="form-group">
         <label for="post_image">Post Image</label>
@@ -132,8 +111,6 @@
         <textarea class="form-control" name="post_content" id="body">
          </textarea>
     </div>
-
-
 
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="create_post" value="Publish Post">

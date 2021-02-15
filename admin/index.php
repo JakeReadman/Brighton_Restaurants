@@ -35,10 +35,9 @@
 
                                     <?php 
 
-                                        $post_count = numRowQuery('posts');
+                                        $active_post_count = numRowStatusQuery('posts', 'post_status', 'published');
 
-                                        echo "<div class='huge'>{$post_count}</div>";
-                                    
+                                        echo "<div class='huge'>{$active_post_count}</div>";
                                 
                                     ?>
 
@@ -66,9 +65,9 @@
 
                                     <?php 
                                     
-                                        $comment_count = numRowQuery('comments');
+                                        $approved_comment_count = numRowStatusQuery('comments', 'comment_post_status', 'approved');
 
-                                        echo "<div class='huge'>{$comment_count}</div>";
+                                        echo "<div class='huge'>{$approved_comment_count}</div>";
                                     
                                     ?>
 
@@ -96,9 +95,9 @@
 
                                     <?php 
                                     
-                                        $user_count = numRowQuery('users');
+                                        $admin_count = numRowStatusQuery('users', 'user_role', 'admin');
 
-                                        echo "<div class='huge'>{$user_count}</div>";
+                                        echo "<div class='huge'>{$admin_count}</div>";
                                     
                                     ?>
 
@@ -125,13 +124,10 @@
                                 <div class="col-xs-9 text-right">
                                     <?php 
                                     
-                                        
-
                                         $category_count = numRowQuery('categories');
 
                                         echo "<div class='huge'>{$category_count}</div>";
-                                        
-                                
+                                    
                                     ?>
                                     <div>Categories</div>
                                 </div>
@@ -149,6 +145,18 @@
             </div>
             <!-- /.row -->
 
+            <?php 
+                
+                $draft_post_count = numRowStatusQuery('posts', 'post_status', 'draft');
+
+                $rejected_comment_count = numRowStatusQuery('comments', 'comment_post_status', 'rejected');
+
+                $pending_comment_count = numRowStatusQuery('comments', 'comment_post_status', 'pending');
+
+                $user_subscriber_count = numRowStatusQuery('users', 'user_role', 'subscriber');
+            
+            ?>
+
             <div class="row">
 
                 <script type="text/javascript">
@@ -163,8 +171,8 @@
 
                         <?php 
                         
-                            $element_text = ['Posts', 'Comments', 'Users', 'Categories'];
-                            $element_count = [$post_count, $comment_count, $user_count, $category_count];
+                            $element_text = ['Active Posts', 'Draft Posts', 'Approved Comments', 'Rejected', 'Pending Comments', 'Admins', 'Subscribers', 'Categories'];
+                            $element_count = [$active_post_count, $draft_post_count, $approved_comment_count, $rejected_comment_count, $pending_comment_count, $admin_count, $user_subscriber_count, $category_count];
 
                             for($i = 0; $i < count($element_count); $i++) {
                                 echo "['{$element_text[$i]}'" . " ," . "{$element_count[$i]}],";

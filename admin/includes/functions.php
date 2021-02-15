@@ -144,15 +144,30 @@ function deleteComment() {
     }
 }
 
-function numRowQuery($table) {
+function selectQuery($table) {
     global $connection;
     $query = "SELECT * FROM " . $table;
     $select_query = mysqli_query($connection, $query);
+    confirmQuery($select_query);
+    return $select_query;
+}
+
+function numRowQuery($table) {
+    global $connection;
+    $select_query = selectQuery($table);
     $result = mysqli_num_rows($select_query);
 
     confirmQuery($result);
 
     return $result;
+}
+
+function numRowStatusQuery($table, $column, $status) {
+    global $connection;
+    $query = "SELECT * FROM $table WHERE $column = '$status'";
+    $result = mysqli_query($connection, $query);
+    return mysqli_num_rows($result);
+
 }
 
 
