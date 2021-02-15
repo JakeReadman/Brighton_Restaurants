@@ -71,22 +71,12 @@
         <input type="text" value="<?php echo $post_title ?>" class="form-control" name="post_title">
     </div>
 
-    <?php 
-                
-              
-            ?>
     <div class="form-group">
         <label for="category">Category</label>
         <select class="form-control" value="<?php echo $post_category_id ?>" name="post_category" id="post_category">
 
 
             <?php 
-
-                $title_query = "SELECT cat_title FROM categories WHERE cat_id = $post_category_id";
-                $select_title = mysqli_query($connection, $title_query);
-                $row = mysqli_fetch_array($select_title);
-                $current_title = escape($row['cat_title']);
-                echo "<option value='{$post_category_id}'>{$current_title}</option>";
 
                 $query = "SELECT * FROM categories";
                 $select_categories = mysqli_query($connection, $query);
@@ -97,8 +87,12 @@
                     $cat_id = escape($row['cat_id']);
                     $cat_title = escape($row['cat_title']);
 
-                    echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                    if($cat_id == $post_category_id) {
+                        echo "<option selected value='{$cat_id}'>{$cat_title}</option>";
 
+                    } else {
+                        echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                    }
                 }
             ?>
 
@@ -111,14 +105,7 @@
     <div class="form-group">
         <label for="users">Users</label>
         <select class="form-control" name="post_user" id="">
-            <?php if($post_author) {
-                echo "<option value='$post_author'>{$post_author}</option>";
-            } elseif($post_user) {
-                echo "<option value='$post_user'>{$post_user}</option>";
-            }
-            ?>
             <?php 
-        
         
                 $query = "SELECT * FROM users";
                 $select_users = mysqli_query($connection, $query);
@@ -130,9 +117,13 @@
                     $username = escape($row['username']);
                     $user_firstname = escape($row['user_firstname']);
                     $user_lastname = escape($row['user_lastname']);
-                    
-                    echo "<option value='$username'>{$username}</option>";
-                
+
+                    if($username == $post_user) {
+                        echo "<option selected value='{$username}'>{$username}</option>";
+
+                    } else {
+                        echo "<option value='{$username}'>{$username}</option>";
+                    }
                 }
             
             ?>
