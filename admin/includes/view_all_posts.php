@@ -32,7 +32,6 @@
                         $post_title = escape($row['post_title']);
                         $post_category_id = escape($row['post_category_id']);
                         $post_date = escape($row['post_date']);
-                        $post_author = escape($row['post_author']);
                         $post_user = escape($row['post_user']);
                         $post_status = escape($row['post_status']);
                         $post_image = escape($row['post_image']);
@@ -41,7 +40,7 @@
 
                     }
 
-                    $new_query = "INSERT INTO posts(post_category_id, post_title, post_author, post_user post_date, post_image, post_content, post_tags, post_status) VALUES({$post_category_id},'{$post_title}','{$post_author}','{$post_user}', now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
+                    $new_query = "INSERT INTO posts(post_category_id, post_title, post_user, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_category_id},'{$post_title}','{$post_user}', now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
 
                     $update_post_status = mysqli_query($connection, $new_query);
                     confirmQuery($update_post_status);
@@ -76,7 +75,7 @@
             <tr>
                 <th><input type="checkbox" name="" id="selectAllBoxes"></th>
                 <th>Id</th>
-                <th>Author</th>
+                <th>user</th>
                 <th>Title</th>
                 <th>Category</th>
                 <th>Status</th>
@@ -110,12 +109,7 @@
                 echo "<tr>";
                 echo "<td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='$post_id'></td>";
                 echo "<td>{$post_id}</td>";
-
-                if(!empty($post_author)) {
-                    echo "<td>{$post_author}</td>";
-                } elseif(!empty($post_user)) {
-                    echo "<td>{$post_user}</td>";
-                }
+                echo "<td>{$post_user}</td>";
 
                 echo "<td><a href='../post.php?p_id={$post_id}'>{$post_title}</a></td>";
 
