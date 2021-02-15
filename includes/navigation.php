@@ -50,9 +50,15 @@
                     ?>
                     </ul>
                 </li>
-                <li>
-                    <a href="admin">Admin</a>
-                </li>
+                <?php 
+                
+                    if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+                        echo "<li><a href='admin'>Admin</a></li>";
+                    }
+                
+                ?>
+
+
                 <li class='<?php echo $registration_class ?>'>
                     <a href="registration.php">Registration</a>
                 </li>
