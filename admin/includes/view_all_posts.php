@@ -135,9 +135,8 @@
                 echo "<td><a href='post_comments.php?id=$post_id'>{$post_comment_count}</a></td>";
                 echo "<td>{$post_views}</td>";
                 echo "<td>{$post_date}</td>";
-                echo "<td><a class='btn btn-warning' href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
+                echo "<td><a class='btn btn-info' href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
                 echo "<td><a rel='$post_id' class='delete-link btn btn-danger' href='javascript:void(0)'>Delete</a></td>";
-                // echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete?');\" class='btn btn-danger' href='posts.php?delete={$post_id}'>Delete</a></td>";
                 echo "</tr>";
         
             }

@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label for="username" class="sr-only">username</label>
                                 <input type="text" name="username" id="username" class="form-control"
-                                    placeholder="Enter Desired Username">
+                                    placeholder="Enter Username">
                             </div>
                             <div class="form-group">
                                 <label for="email" class="sr-only">Email</label>
