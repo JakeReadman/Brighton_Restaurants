@@ -9,7 +9,7 @@
         $password = escape($_POST['password']);
 
         if(usernameExists($username)) {
-            $failed_message = "Username Already Taken";
+            $failed_message = "Username Already Exists";
             $success_message = "";
         } else {
 
