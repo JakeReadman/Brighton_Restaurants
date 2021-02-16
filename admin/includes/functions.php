@@ -181,4 +181,10 @@ function usernameExists($username) {
     return $numRows > 0;
 }
 
+function emailExists($user_email) {
+    global $connection;
+    $numRows = numRowStatusQuery('users', 'user_email', $user_email);
+    return $numRows > 0;
+}
+
 ?>

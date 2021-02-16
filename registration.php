@@ -11,9 +11,11 @@
         if(usernameExists($username)) {
             $failed_message = "Username Already Exists";
             $success_message = "";
+        } else if(emailExists($email)) {
+            $failed_message = "Email Already Exists";
+            $success_message = "";
         } else {
 
-            
             if(!empty($username) && !empty($email) && !empty($password)) {
                 
                 $username = mysqli_real_escape_string($connection, $username);
