@@ -24,8 +24,9 @@
 
             <h4>Logged in as <?php echo $_SESSION['username'] ?></h4>
             <a href='includes/logout.php' name="logout" class="btn btn-warning">Log Out</a>
+            <?php if($_SESSION['user_role'] == 'admin'): ?>
             <a href="admin" class="btn btn-success">Admin Page</a>
-
+            <?php endif; ?>
             <?php else: ?>
 
 
