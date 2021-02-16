@@ -156,7 +156,7 @@
         $query = "DELETE FROM posts WHERE post_id = $delete_post_id";
 
         $delete_query = mysqli_query($connection, $query);
-        header("location:posts.php");
+        redirect("posts.php");
     }
 
 ?>

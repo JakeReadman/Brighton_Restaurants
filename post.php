@@ -35,7 +35,7 @@
 
                     if(mysqli_num_rows($result) < 1) {
                         echo "<script>alert('Post Not Published')</script>";
-                        header("Location: index.php");
+                        redirect("index.php");
                     }
 
 
@@ -154,7 +154,7 @@
             <?php  
                 }  
             } else {
-                    header("Location: index.php");
+                    redirect("index.php");
                 }   
             ?>
 

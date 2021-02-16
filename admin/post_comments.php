@@ -107,7 +107,7 @@
 
                     $approve_comment_query = mysqli_query($connection, $query);
 
-                    header("Location: post_comments.php?id=$selected_post_id");
+                    redirect("post_comments.php?id=$selected_post_id");
                 }
 
                 if(isset($_GET['reject'])) {
@@ -117,7 +117,7 @@
 
                     $reject_comment_query = mysqli_query($connection, $query);
 
-                    header("Location: post_comments.php?id=$selected_post_id");
+                    redirect("post_comments.php?id=$selected_post_id");
                 }
 
                 if(isset($_GET['delete'])) {
@@ -127,7 +127,7 @@
 
                     $delete_comment_query = mysqli_query($connection, $query);
 
-                    header("Location: post_comments.php?id=$selected_post_id");
+                    redirect("post_comments.php?id=$selected_post_id");
                 }
 
             ?>

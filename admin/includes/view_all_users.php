@@ -75,7 +75,7 @@
 
         $admin_user_query = mysqli_query($connection, $query);
 
-        header("Location: users.php");
+        redirect("users.php");
     }
 
     if(isset($_GET['make_subscriber'])) {
@@ -85,7 +85,7 @@
 
         $subscriber_user_query = mysqli_query($connection, $query);
 
-        header("Location: users.php");
+        redirect("users.php");
     }
 
     if(isset($_GET['edit'])) {
@@ -102,7 +102,7 @@
                 $delete_user_id = mysqli_real_escape_string($connection, $_GET['delete']);
                 $query = "DELETE FROM users WHERE user_id = $delete_user_id";     
                 $delete_user_query = mysqli_query($connection, $query);    
-                header("Location: users.php");
+                redirect("users.php");
             }
 
         }

@@ -187,4 +187,8 @@ function emailExists($user_email) {
     return $numRows > 0;
 }
 
+function redirect($location) {
+    return header("Location: $location");
+}
+
 ?>

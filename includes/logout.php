@@ -8,7 +8,7 @@
     $_SESSION['user_role'] = null;
 
     if(!isset($_SESSION['user_role'])) {
-        header("Location: ../index.php");
+        redirect("../index.php");
     }
 
 ?>

@@ -56,7 +56,7 @@
     
     } else {  // If the user id is not present in the URL we redirect to the home page
 
-        header("Location: index.php");
+        redirect("index.php");
   
     }
 
