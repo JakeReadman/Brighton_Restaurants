@@ -7,34 +7,41 @@
         $username = escape($_POST['username']);
         $email = escape($_POST['email']);
         $password = escape($_POST['password']);
-        
-        if(!empty($username) && !empty($email) && !empty($password)) {
 
-            $username = mysqli_real_escape_string($connection, $username);
-            $email = mysqli_real_escape_string($connection, $email);
-            $password = mysqli_real_escape_string($connection, $password);
-
-            $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
-
-            $query = "INSERT INTO users (username, user_email, user_password, user_role) VALUES ('{$username}', '{$email}', '{$password}', 'subscriber')";
-            $registration_user_query = mysqli_query($connection, $query);
-
-            if(!$registration_user_query) {
-                die("QUERY FAILED" . mysqli_error($connection) . ' ' . mysqli_errno($connection));
-            }
-
-            $success_message = "Registration Successful";
-            $failed_message = "";
-
-        } else {
+        if(usernameExists($username)) {
+            $failed_message = "Username Already Taken";
             $success_message = "";
-            $failed_message = "All fields must be completed to register";
-        }
-    } else {
-        $failed_message = '';
-        $success_message = '';
-    }
+        } else {
 
+            
+            if(!empty($username) && !empty($email) && !empty($password)) {
+                
+                $username = mysqli_real_escape_string($connection, $username);
+                $email = mysqli_real_escape_string($connection, $email);
+                $password = mysqli_real_escape_string($connection, $password);
+                
+                $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+                
+                $query = "INSERT INTO users (username, user_email, user_password, user_role) VALUES ('{$username}', '{$email}', '{$password}', 'subscriber')";
+                $registration_user_query = mysqli_query($connection, $query);
+                
+                if(!$registration_user_query) {
+                    die("QUERY FAILED" . mysqli_error($connection) . ' ' . mysqli_errno($connection));
+                }
+                
+                $success_message = "Registration Successful";
+                $failed_message = "";
+                
+            } else {
+                $success_message = "";
+                $failed_message = "All fields must be completed to register";
+            }
+        }
+        } else {
+            $failed_message = '';
+            $success_message = '';
+    }
+        
 ?>
 
 

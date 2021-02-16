@@ -175,4 +175,10 @@ function numRowStatusQuery($table, $column, $status) {
     return mysqli_num_rows($result);
 }
 
+function usernameExists($username) {
+    global $connection;
+    $numRows = numRowStatusQuery('users', 'username', $username);
+    return $numRows > 0;
+}
+
 ?>
