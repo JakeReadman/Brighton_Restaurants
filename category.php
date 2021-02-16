@@ -10,7 +10,7 @@
 
     <div class="row">
 
-        <!-- Blog Entries Column -->
+        <!-- Restaurant Entries Column -->
         <div class="col-md-8">
 
             <?php 
@@ -20,8 +20,7 @@
                         
                     $query = "SELECT * FROM posts WHERE post_category_id = {$post_category_id} AND post_status = 'published'";
                     $result = mysqli_query($connection, $query);
-                    $category_query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
-                    $category_result = mysqli_query($connection, $category_query);
+                    $category_result = selectStatusQuery('categories', 'cat_id', $post_category_id);
                     $cat_row = mysqli_fetch_array($category_result);
                     $category_title = escape($cat_row['cat_title']);
 
@@ -36,19 +35,19 @@
                     while($row = mysqli_fetch_assoc($result)) {
                         $post_id = escape($row['post_id']);
                         $post_title = escape($row['post_title']);
-                        $post_author = escape($row['post_user']);
+                        $post_user = escape($row['post_user']);
                         $post_date = escape($row['post_date']);
                         $post_image = escape($row['post_image']);
                         $post_content = substr($row['post_content'], 0, 100);
                             ?>
 
 
-            <!-- First Blog Post -->
+            <!-- First Restaurant Post -->
             <h2>
                 <a href="post.php?p_id=<?php echo $post_id ?>"><?php echo $post_title ?></a>
             </h2>
             <p class="lead">
-                by <a href="index.php"><?php echo $post_author ?></a>
+                by <a href="index.php"><?php echo $post_user ?></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
             <hr>
@@ -67,7 +66,7 @@
 
         </div>
 
-        <!-- Blog Sidebar Widgets Column -->
+        <!-- Restaurant Sidebar Widgets Column -->
         <?php include "includes/sidebar.php"; ?>
         <!-- /.row -->
 

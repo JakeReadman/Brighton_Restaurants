@@ -50,12 +50,6 @@
         <!-- Blog Categories Well -->
         <div class="well">
 
-            <?php 
-            
-                $query = "SELECT * FROM categories";
-                $select_categories_sidebar = mysqli_query($connection, $query);
-                    
-            ?>
 
             <h4>Blog Categories</h4>
             <div class="row">
@@ -63,6 +57,8 @@
                     <ul class="list-unstyled">
 
                         <?php 
+                            $select_categories_sidebar = selectQuery('categories');
+                            
                             while($row = mysqli_fetch_assoc($select_categories_sidebar)) {
                                 $cat_title = escape($row['cat_title']);
                                 $cat_id = escape($row['cat_id']);

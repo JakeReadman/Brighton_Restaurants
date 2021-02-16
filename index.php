@@ -10,7 +10,7 @@
 
     <div class="row">
 
-        <!-- Blog Entries Column -->
+        <!-- Restaurant Entries Column -->
         <div class="col-md-8">
 
             <?php
@@ -29,8 +29,7 @@
                     $page_1 = ($page * $per_page) - $per_page;
                 }
 
-                $post_query_count = "SELECT * FROM posts WHERE post_status = 'published'";
-                $find_count_query = mysqli_query($connection, $post_query_count);
+                $find_count_query = selectStatusQuery('posts', 'post_status', 'published');
                 $count = mysqli_num_rows($find_count_query);
 
                 $count = ceil($count / $per_page);
@@ -62,7 +61,7 @@
 
 
 
-            <!-- First Blog Post -->
+            <!-- First Restaurant Post -->
             <h2>
                 <a href="post.php?p_id=<?php echo $post_id ?>"><?php echo $post_title ?></a>
             </h2>
@@ -86,7 +85,7 @@
 
         </div>
 
-        <!-- Blog Sidebar Widgets Column -->
+        <!-- Restaurant Sidebar Widgets Column -->
         <?php include "includes/sidebar.php"; ?>
         <!-- /.row -->
 
