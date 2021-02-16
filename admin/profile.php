@@ -5,9 +5,7 @@
     if(isset($_SESSION['username'])) {
         $username = escape($_SESSION['username']);
 
-        $query = "SELECT * FROM users WHERE username = '{$username}'";
-
-        $select_user_profile_query = mysqli_query($connection, $query);
+        $select_user_profile_query = selectStatusQuery('users', 'username', $username);
 
         while($row = mysqli_fetch_array($select_user_profile_query)) {
             $user_id = escape($row['user_id']);
