@@ -201,7 +201,7 @@ function isLoggedIn() {
 }
 
 function isAdmin() {
-    return $_SESSION['user_role'] == 'admin';
+    return isLoggedIn() && $_SESSION['user_role'] == 'admin';
 }
 
 function checkLoggedInAndRedirect($location=null) {

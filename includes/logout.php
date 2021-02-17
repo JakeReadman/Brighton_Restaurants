@@ -8,7 +8,7 @@
     $_SESSION['user_lastname'] = null;
     $_SESSION['user_role'] = null;
 
-    if(!isset($_SESSION['user_role'])) {
+    if(!isLoggedIn()) {
         redirect("../index.php");
     }
 

@@ -26,7 +26,7 @@
                         die("Query Failed" . mysqli_error($connection));
                     }
 
-                    if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+                    if(isAdmin()) {
                         $query = "SELECT * FROM posts WHERE post_id = {$selected_post_id}";
                     } else {
                         $query = "SELECT * FROM posts WHERE post_id = {$selected_post_id} AND post_status = 'published'";

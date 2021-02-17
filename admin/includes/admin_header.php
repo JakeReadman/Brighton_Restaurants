@@ -6,7 +6,7 @@
 
 <?php 
 
-    if(!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
+    if(!isAdmin()) {
         redirect("../index.php");
     }
 

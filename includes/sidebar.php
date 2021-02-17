@@ -20,7 +20,7 @@
         <!-- Login Form -->
         <div class="well">
 
-            <?php if(isset($_SESSION['user_role'])): ?>
+            <?php if(isLoggedIn()): ?>
 
             <h4>Logged in as <?php echo $_SESSION['username'] ?></h4>
             <a href='includes/logout.php' name="logout" class="btn btn-warning">Log Out</a>
