@@ -55,44 +55,68 @@
 <!-- Page Content -->
 <div class="container">
 
-    <section id="login">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-6 col-xs-offset-3">
-                    <div class="form-wrap">
-                        <h1>Register</h1>
-                        <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
-                            <h6 class="text-center bg-danger"><?php echo $failed_message ?></h6>
-                            <h6 class="text-center bg-success"><?php echo $success_message ?></h6>
-                            <div class="form-group">
-                                <label for="username" class="sr-only">username</label>
-                                <input type="text" name="username" id="username" class="form-control"
-                                    placeholder="Enter Username">
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="sr-only">Email</label>
-                                <input type="email" name="email" id="email" class="form-control"
-                                    placeholder="somebody@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="sr-only">Password</label>
-                                <input type="password" name="password" id="key" class="form-control"
-                                    placeholder="Password">
-                            </div>
+    <div class="form-gap"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
 
-                            <input type="submit" name="submit" id="btn-login" class="btn btn-custom btn-lg btn-block"
-                                value="Register">
-                        </form>
 
+                            <h3><i class="fa fa-user fa-4x"></i></h3>
+                            <h2 class="text-center">Register</h2>
+                            <div class="panel-body">
+                                <form role="form" action="registration.php" method="post" id="login-form"
+                                    autocomplete="off">
+                                    <h6 class="text-center bg-danger"><?php echo $failed_message ?></h6>
+                                    <h6 class="text-center bg-success"><?php echo $success_message ?></h6>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-user color-blue"></i>
+                                            </span>
+                                            <label for="username" class="sr-only">username</label>
+                                            <input type="text" name="username" id="username" class="form-control"
+                                                placeholder="Enter Username">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-envelope color-blue"></i>
+                                            </span>
+                                            <label for="email" class="sr-only">Email</label>
+                                            <input type="email" name="email" id="email" class="form-control"
+                                                placeholder="somebody@example.com">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-lock color-blue"></i>
+                                            </span>
+                                            <label for="password" class="sr-only">Password</label>
+                                            <input type="password" name="password" id="key" class="form-control"
+                                                placeholder="Password">
+                                        </div>
+                                    </div>
+
+                                    <input type="submit" name="submit" id="btn-login"
+                                        class="btn btn-custom btn-lg btn-block" value="Register">
+                                </form>
+
+                            </div><!-- Body-->
+
+                        </div>
                     </div>
-                </div> <!-- /.col-xs-12 -->
-            </div> <!-- /.row -->
-        </div> <!-- /.container -->
-    </section>
-
+                </div>
+            </div>
+        </div>
+    </div>
 
     <hr>
 
-
-
     <?php include "includes/footer.php";?>
+
+</div> <!-- /.container -->

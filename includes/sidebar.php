@@ -33,7 +33,7 @@
 
             <h4>Login</h4>
             <!-- Search Form -->
-            <form action="login.php" method="post">
+            <form action="includes/login_handler.php" method="post">
                 <div class="form-group">
                     <input name="username" placeholder="Enter Username" type="text" class="form-control">
                 </div>

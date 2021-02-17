@@ -29,6 +29,7 @@
 
                             $cat_class = '';
                             $registration_class = '';
+                            $login_class = '';
                             $contact_class = '';
                             $home_class = '';
 
@@ -39,6 +40,8 @@
                                 $cat_class = 'active';
                             } else if($pageName == $registration) {
                                 $registration_class = 'active';
+                            } else if($pageName == 'login.php') {
+                                $login_class = 'active';
                             } else if($pageName == 'contact.php') {
                                 $contact_class = 'active';
                             }
@@ -66,6 +69,9 @@
                             echo "<li class='$registration_class'></i>
                                 <a href='registration.php'>Sign Up</a>
                             </li>";
+                            echo "<li class='$login_class'></i>
+                            <a href='login.php'>Login</a>
+                        </li>";
                         } else {
                 ?>
                 <li class="dropdown">

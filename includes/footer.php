@@ -2,7 +2,7 @@
    <footer>
        <div class="row">
            <div class="col-lg-12">
-               <p class="text-center">Copyright &copy; Jake Readman 2020</p>
+               <p class="text-center">Copyright &copy; Jake Readman</p>
            </div>
            <!-- /.col-lg-12 -->
        </div>

@@ -194,6 +194,8 @@ function redirect($location) {
 
 function loginUser($username, $password) {
 
+    global $connection;
+
     $username = mysqli_real_escape_string($connection, $username);
     $password = mysqli_real_escape_string($connection, $password);
 
