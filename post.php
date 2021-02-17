@@ -53,7 +53,8 @@
 
             <!-- First Post -->
             <p class="lead">
-                by <a href="index.php"><?php echo $post_user ?></a>
+                by <a
+                    href="user_posts.php?user=<?php echo $post_user ?>&p_id=<?php echo $selected_post_id ?>"><?php echo $post_user ?></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
             <hr>

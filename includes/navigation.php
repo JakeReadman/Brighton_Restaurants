@@ -21,7 +21,7 @@
 
                         <?php 
                     
-                        $select_all_categories_query = selectQuery('users');
+                        $select_all_categories_query = selectQuery('categories');
 
                         while($row = mysqli_fetch_assoc($select_all_categories_query)) {
                             $cat_title = escape($row['cat_title']);
@@ -49,33 +49,39 @@
                     ?>
                     </ul>
                 </li>
-                <?php 
-                
-                    if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
-                        echo "<li><a href='admin'>Admin</a></li>";
-                    }
-                
-                ?>
-
-
-                <li class='<?php echo $registration_class ?>'>
-                    <a href="registration.php">Registration</a>
-                </li>
                 <li class='<?php echo $contact_class ?>'>
                     <a href="contact.php">Contact</a>
                 </li>
-
-                <?php 
-                
-                        if(isset($_SESSION['user_role'])) {
-                            if(isset($_GET['p_id'])) {
-                                $post_id = escape($_GET['p_id']);
-                                echo "<li><a href='admin/posts.php?source=edit_post&p_id={$post_id}'>Edit Post</a></li>";
-                            }
+                <?php              
+                    if(isset($_SESSION['user_role'])) {
+                        if(isset($_GET['p_id'])) {
+                            $post_id = escape($_GET['p_id']);
+                            echo "<li><a href='admin/posts.php?source=edit_post&p_id={$post_id}'>Edit Post</a></li>";
                         }
-                
+                    }                
                 ?>
-
+            </ul>
+            <ul class="nav navbar-nav navbar-right top-nav">
+                <?php if(!isset($_SESSION['username'])) {
+                            echo "<li class='$registration_class'></i>
+                                <a href='registration.php'>Sign Up</a>
+                            </li>";
+                        } else {
+                ?>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"> </i>
+                        <?php echo $_SESSION['username'] ?> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <?php
+                        if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+                            echo "<li><a href='admin'>Admin</a></li>";
+                            echo "<li class='divider'></li>";
+                        }
+                            echo "<li><a href='includes/logout.php' name='logout'>Logout</a></li>";
+                    }
+                        ?>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

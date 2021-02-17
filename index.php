@@ -48,7 +48,7 @@
                 while($row = mysqli_fetch_assoc($result)) {
                     $post_id = escape($row['post_id']);
                     $post_title = escape($row['post_title']);
-                    $post_author = escape($row['post_user']);
+                    $post_user = escape($row['post_user']);
                     $post_date = escape($row['post_date']);
                     $post_image = escape($row['post_image']);
                     $post_content = substr($row['post_content'], 0, 100);
@@ -67,7 +67,7 @@
             </h2>
             <p class="lead">
                 by <a
-                    href="author_posts.php?author=<?php echo $post_author ?>&p_id=<?php echo $post_id ?>"><?php echo $post_author ?></a>
+                    href="user_posts.php?user=<?php echo $post_user ?>&p_id=<?php echo $post_id ?>"><?php echo $post_user ?></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
             <hr>

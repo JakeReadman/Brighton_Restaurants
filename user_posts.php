@@ -32,14 +32,9 @@
                     $post_content = escape($row['post_content']);
             ?>
 
-            <h1 class="page-header">
-                Page Heading
-                <small>Secondary Text</small>
-            </h1>
-
             <!-- First Blog Post -->
             <h2>
-                <a href="#"><?php echo $post_title ?></a>
+                <a href="post.php?p_id=<?php echo $selected_post_id ?>"><?php echo $post_title ?></a>
             </h2>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
             <hr>

@@ -188,7 +188,8 @@ function emailExists($user_email) {
 }
 
 function redirect($location) {
-    return header("Location: $location");
+    header("Location: $location");
+    exit;
 }
 
 ?>

@@ -36,3 +36,7 @@ footer {
 .btn-custom {
   background-color: black;
 }
+
+.p-l {
+  padding-left: 5px;
+}
