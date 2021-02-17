@@ -192,4 +192,22 @@ function redirect($location) {
     exit;
 }
 
+function ifIsMethod($method=null) {
+    return $_SERVER['REQUEST_METHOD'] == strtoupper($method);
+}
+
+function isLoggedIn() {
+    return isset($_SESSION['user_role']);
+}
+
+function isAdmin() {
+    return $_SESSION['user_role'] == 'admin';
+}
+
+function checkLoggedInAndRedirect($location=null) {
+    if(isLoggedIn()) {
+        redirect($location);
+    }
+}
+
 ?>
