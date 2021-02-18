@@ -1,12 +1,17 @@
 {
-    "name": "jake/brighton_restaurants",
-    "authors": [
-        {
-            "name": "Jake Readman",
-            "email": "jakereadman@gmail.com"
-        }
-    ],
-    "require": {
-        "phpmailer/phpmailer": "^6.2"
+  "name": "jake/brighton_restaurants",
+  "authors": [
+    {
+      "name": "Jake Readman",
+      "email": "jakereadman@gmail.com"
     }
+  ],
+  "require": {
+    "phpmailer/phpmailer": "^6.2"
+  },
+  "autoload": {
+    "classmap": [
+      "classes"
+    ]
+  }
 }
