@@ -1,0 +1,12 @@
+{
+    "name": "jake/brighton_restaurants",
+    "authors": [
+        {
+            "name": "Jake Readman",
+            "email": "jakereadman@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.2"
+    }
+}

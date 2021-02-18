@@ -1,6 +1,30 @@
 <?php  include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
 
+<?php
+
+    if(!isMethod('get') && !isset($_GET['forgot'])) {
+        redirect('index.php');
+    }
+
+    if(isMethod('post')) {
+        if(isset($_POST['email'])) {
+            $email = $_POST['email'];
+            $length = 50;
+            $token = bin2hex(openssl_random_pseudo_bytes($length));
+
+            if(emailExists($email)) {
+                $query = "UPDATE users SET token = '{$token}' WHERE user_email = ?";
+                if($stmt = mysqli_prepare($connection , $query)) {
+                   mysqli_stmt_bind_param($stmt, "s", $email);
+                   mysqli_stmt_execute($stmt);
+                   mysqli_stmt_close($stmt);
+                } 
+            }
+        }
+    }
+
+?>
 
 <!-- Page Content -->
 <div class="container">
@@ -14,30 +38,33 @@
                         <div class="text-center">
 
 
-                                <h3><i class="fa fa-lock fa-4x"></i></h3>
-                                <h2 class="text-center">Forgot Password?</h2>
-                                <p>You can reset your password here.</p>
-                                <div class="panel-body">
+                            <h3><i class="fa fa-lock fa-4x"></i></h3>
+                            <h2 class="text-center">Forgot Password?</h2>
+                            <p>You can reset your password here.</p>
+                            <div class="panel-body">
 
 
 
 
-                                    <form id="register-form" role="form" autocomplete="off" class="form" method="post">
+                                <form id="register-form" role="form" autocomplete="off" class="form" method="post">
 
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                                <input id="email" name="email" placeholder="email address" class="form-control"  type="email">
-                                            </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                            <input id="email" name="email" placeholder="email address"
+                                                class="form-control" type="email">
                                         </div>
-                                        <div class="form-group">
-                                            <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
-                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block"
+                                            value="Reset Password" type="submit">
+                                    </div>
 
-                                        <input type="hidden" class="hide" name="token" id="token" value="">
-                                    </form>
+                                    <input type="hidden" class="hide" name="token" id="token" value="">
+                                </form>
 
-                                </div><!-- Body-->
+                            </div><!-- Body-->
 
                         </div>
                     </div>
@@ -52,4 +79,3 @@
     <?php include "includes/footer.php";?>
 
 </div> <!-- /.container -->
-
