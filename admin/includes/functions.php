@@ -192,7 +192,7 @@ function redirect($location) {
     exit;
 }
 
-function loginUser($username, $password) {
+function loginUser($username, $password, $location) {
 
     global $connection;
 
@@ -208,25 +208,22 @@ function loginUser($username, $password) {
         $db_user_lastname = escape($row['user_lastname']);
         $db_user_role = escape($row['user_role']);
         $db_user_password = escape($row['user_password']);
-    }
-
-    // $password = crypt($password, $db_user_password);
-
-
-    if(password_verify($password, $db_user_password)) {
-        $_SESSION['username'] = $db_username;
-        $_SESSION['user_firstname'] = $db_user_firstname;
-        $_SESSION['user_lastname'] = $db_user_lastname;
-        $_SESSION['user_role'] = $db_user_role;
-
-        redirect("../index.php");
-        
-    } else {
-        redirect("../index.php");
+   
+        if(password_verify($password, $db_user_password)) {
+            $_SESSION['username'] = $db_username;
+            $_SESSION['user_firstname'] = $db_user_firstname;
+            $_SESSION['user_lastname'] = $db_user_lastname;
+            $_SESSION['user_role'] = $db_user_role;
+    
+            redirect($location);
+            
+        } else {
+            return false;
+        }
     }
 }
 
-function ifIsMethod($method=null) {
+function isMethod($method=null) {
     return $_SERVER['REQUEST_METHOD'] == strtoupper($method);
 }
 

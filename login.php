@@ -1,7 +1,21 @@
 <?php  include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
 
-<?php checkLoggedInAndRedirect('index.php') ?>
+<?php 
+
+    checkLoggedInAndRedirect('index.php');
+
+    $message = '';
+
+    if(isMethod('post')) {
+        if(isset($_POST['username']) && isset($_POST['password'])) {
+            loginUser($_POST['username'], $_POST['password'], 'index.php');
+        } else {
+            redirect('login.php');
+        }
+    }
+
+?>
 
 
 <!-- Navigation -->
@@ -23,6 +37,7 @@
 
                             <h3><i class="fa fa-user fa-4x"></i></h3>
                             <h2 class="text-center">Login</h2>
+                            <h4 class="bg-danger"><?php echo $message ?></h4>
                             <div class="panel-body">
 
 

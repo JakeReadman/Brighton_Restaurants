@@ -6,7 +6,9 @@
 <?php 
 
 if(isset($_POST['login'])) {
-    loginUser($_POST['username'], $_POST['password']);
+    loginUser($_POST['username'], $_POST['password'], '../index.php');
 }
+
+redirect('../index.php')
 
 ?>
