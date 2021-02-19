@@ -1,5 +1,14 @@
 <?php 
 
+function imagePlaceholder($image = '') {
+
+    if(!$image) {
+        return '/img/Brighton Pier.JPG';
+    }  else {
+        return $image;  
+    } 
+}
+
 function escape($string) {
     global $connection;
     return mysqli_real_escape_string($connection, trim($string));
