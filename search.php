@@ -17,7 +17,6 @@
 
                 if(isset($_POST['submit'])) {
                     $search = escape($_POST['search']);
-
                     $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' OR post_title LIKE '%$search%' OR post_user LIKE '%$search%'";
                     $search_query = mysqli_query($connection, $query);
 
@@ -26,6 +25,7 @@
                     }
 
                     $count = mysqli_num_rows($search_query);
+                    
                     if($count == 0) {
                         echo "<h1>No posts to display</h1>";
                     } else {

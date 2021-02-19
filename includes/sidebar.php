@@ -29,8 +29,6 @@
             <?php endif; ?>
             <?php else: ?>
 
-
-
             <h4>Login</h4>
             <!-- Search Form -->
             <form action="includes/login_handler.php" method="post">
