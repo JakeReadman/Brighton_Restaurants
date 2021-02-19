@@ -1,7 +1,11 @@
+<?php use PHPMailer\PHPMailer\PHPMailer; ?>
 <?php  include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
 
 <?php
+
+    require './vendor/autoload.php';
+    require './classes/Config.php';
 
     if(!isMethod('get') && !isset($_GET['forgot'])) {
         redirect('index.php');
@@ -19,6 +23,43 @@
                    mysqli_stmt_bind_param($stmt, "s", $email);
                    mysqli_stmt_execute($stmt);
                    mysqli_stmt_close($stmt);
+
+                    // CONFIGURE PHPmailer:
+                    $mail = new PHPMailer();
+
+                    $mail->isSMTP();
+                    $mail->Host = Config::SMTP_HOST;
+                    $mail->Username = Config::SMTP_USER;
+                    $mail->Password = Config::SMTP_PASSWORD;
+                    $mail->Port = Config::SMTP_PORT;
+                    $mail->SMTPSecure = 'tls';
+                    $mail->SMTPAuth = true;
+                    $mail->isHTML(true);
+                    $mail->CharSet = 'UTF-8';
+
+
+                    $mail->setFrom('jakereadman@gmail.com', 'Jake Readman');
+                    $mail->addAddress($email);
+
+                    $mail->Subject = 'This is a test email';
+
+                    $mail->Body = 'Email Body test';
+
+                    $mail->Body = '<p>Please click to reset your password
+
+                    <a href="http://localhost:80/cms/reset.php?email='.$email.'&token='.$token.' ">http://localhost:80/cms/reset.php?email='.$email.'&token='.$token.'</a>
+
+                    </p>';
+                    if($mail->send()){
+
+                        $emailSent = true;
+
+                    } else{
+
+                        echo "NOT SENT";
+
+                    }
+
                 } 
             }
         }

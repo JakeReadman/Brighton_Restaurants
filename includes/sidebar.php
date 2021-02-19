@@ -44,7 +44,7 @@
                     </span>
                 </div>
                 <div class="form-group">
-                    <a href="password_reset.php?forgot=<?php ?>">Forgot Password?</a>
+                    <a href="forgot_password.php?forgot=<?php ?>">Forgot Password?</a>
                 </div>
                 <!-- /.input-group -->
             </form>
