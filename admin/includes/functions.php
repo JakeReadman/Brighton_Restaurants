@@ -155,7 +155,7 @@ function deleteComment() {
 
 function selectQuery($table) {
     global $connection;
-    $query = "SELECT * FROM " . $table;
+    $query = "SELECT * FROM $table";
     $select_query = mysqli_query($connection, $query);
     confirmQuery($select_query);
     return $select_query;
@@ -242,6 +242,26 @@ function isLoggedIn() {
 
 function isAdmin() {
     return isLoggedIn() && $_SESSION['user_role'] == 'admin';
+}
+
+function loggedInUserId() {
+    if(isLoggedIn()) {
+        $result = selectStatusQuery('users', 'username', $_SESSION['username']);
+        $user = mysqli_fetch_array($result);
+        if(mysqli_num_rows($result) >= 1) {
+            return $user['user_id'];
+        }
+    } else {
+        return false;
+    }
+}
+
+function userLikePost($post_id = '') {
+    global $connection;
+    $user_id = loggedInUserId();
+    $query = "SELECT * FROM likes WHERE user_id = {$user_id} AND post_id = {$post_id}";
+    $result = mysqli_query($connection, $query);
+    return mysqli_num_rows($result) >= 1;
 }
 
 function checkLoggedInAndRedirect($location=null) {
