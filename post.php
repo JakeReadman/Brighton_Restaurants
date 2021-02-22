@@ -4,6 +4,53 @@
 <?php include "includes/header.php"; ?>
 <!-- Navigation -->
 <?php include "includes/navigation.php"; ?>
+<?php 
+
+    if(isset($_POST['liked'])) {
+        $post_id = $_POST['postId'];
+        $user_id = $_POST['userId'];
+
+        //Fetch selected post
+
+        $post_result = selectStatusQuery('posts', 'post_id', $post_id);
+        $post = mysqli_fetch_array($post_result);
+        $post_likes = $post['post_likes'];
+
+        //Update post likes
+
+        $update_likes_query = "UPDATE posts SET post_likes = $post_likes+1 WHERE post_id = $post_id";
+        mysqli_query($connection, $update_likes_query);
+        
+        //Create likes in likes table
+
+        $query = "INSERT INTO likes(user_id, post_id) VALUES($user_id, $post_id)";
+        mysqli_query($connection, $query);
+        exit();
+    }
+
+    if(isset($_POST['unliked'])) {
+        $post_id = $_POST['postId'];
+        $user_id = $_POST['userId'];
+
+        //Fetch selected post
+
+        $post_result = selectStatusQuery('posts', 'post_id', $post_id);
+        $post = mysqli_fetch_array($post_result);
+        $post_likes = $post['post_likes'];
+
+        //Update post likes
+
+        $update_likes_query = "UPDATE posts SET post_likes = $post_likes-1 WHERE post_id = $post_id";
+        mysqli_query($connection, $update_likes_query);
+        
+        //Delete likes in likes table
+
+        $delete_query = "DELETE FROM likes WHERE post_id = $post_id AND user_id = $user_id";
+        mysqli_query($connection, $delete_query);
+        exit();
+    }
+
+?>
 
 <!-- Page Content -->
 <div class="container">
@@ -12,7 +59,6 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-
 
             <?php 
 
@@ -45,6 +91,7 @@
                         $post_date = escape($row['post_date']);
                         $post_image = escape($row['post_image']);
                         $post_content = escape($row['post_content']);
+                        $post_likes = escape($row['post_likes']);
             ?>
 
             <h1 class="page-header">
@@ -63,6 +110,24 @@
             <p><?php echo $post_content ?></p>
 
             <hr>
+            <?php if(isLoggedin()): ?>
+            <div class="row like-section">
+                <p class="pull-right"><a class="<?php echo userLikedPost($selected_post_id) ? 'unlike' : 'like' ?>"
+                        href=""><span
+                            class="m-r-5 <?php echo userLikedPost($selected_post_id) ? 'glyphicon glyphicon-thumbs-down' : 'glyphicon glyphicon-thumbs-up' ?>"></span><?php echo userLikedPost($selected_post_id) ? 'Unlike' : 'Like' ?>
+                    </a></p>
+            </div>
+            <?php else: ?>
+            <div class="row like-section-message">
+                <p class="pull-right">You need to <a href="login.php">login</a> or <a
+                        href="registration.php">register</a>
+                    to like</p>
+            </div>
+            <?php endif; ?>
+            <div class="row like-section">
+                <p class="pull-right">Likes: <?php echo $post_likes ?></p>
+            </div>
+            <div class="clearfix"></div>
 
             <?php 
                 } 
@@ -169,3 +234,36 @@
         <hr>
 
         <?php include "includes/footer.php"; ?>
+
+        <script>
+        $(document).ready(function() {
+            let postId = <?php echo $selected_post_id ?>;
+            let userId = <?php echo loggedInUserId(); ?>;
+
+            //Like post functionality
+            $('.like').click(function() {
+                $.ajax({
+                    url: "post.php?p_id=<?php echo $selected_post_id; ?>",
+                    type: "post",
+                    data: {
+                        'liked': 1,
+                        'postId': postId,
+                        'userId': userId,
+                    }
+                })
+            });
+
+            //unline post
+            $('.unlike').click(function() {
+                $.ajax({
+                    url: "post.php?p_id=<?php echo $selected_post_id; ?>",
+                    type: "post",
+                    data: {
+                        'unliked': 1,
+                        'postId': postId,
+                        'userId': userId,
+                    }
+                })
+            });
+        });
+        </script>
