@@ -248,20 +248,16 @@ function loggedInUserId() {
     if(isLoggedIn()) {
         $result = selectStatusQuery('users', 'username', $_SESSION['username']);
         $user = mysqli_fetch_array($result);
-        if(mysqli_num_rows($result) >= 1) {
-            return $user['user_id'];
-        }
-    } else {
-        return false;
+        return mysqli_num_rows($result) >= 1 ? $user['user_id'] : false;
     }
 }
 
-function userLikePost($post_id = '') {
+function userLikedPost($post_id = '') {
     global $connection;
     $user_id = loggedInUserId();
     $query = "SELECT * FROM likes WHERE user_id = {$user_id} AND post_id = {$post_id}";
     $result = mysqli_query($connection, $query);
-    return mysqli_num_rows($result) >= 1;
+    return mysqli_num_rows($result) >= 1 ? true : false;
 }
 
 function checkLoggedInAndRedirect($location=null) {

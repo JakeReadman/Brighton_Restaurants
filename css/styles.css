@@ -38,6 +38,20 @@ footer {
   color: #ccc;
 }
 
-.p-l {
-  padding-left: 5px;
+.m-l-5 {
+  margin-left: 5px;
+}
+
+.m-r-5 {
+  margin-right: 5px;
+}
+
+.like-section {
+  font-size: 18px;
+  color: steelblue;
+}
+
+.like-section-message {
+  font-size: 12px;
+  color: #666;
 }
