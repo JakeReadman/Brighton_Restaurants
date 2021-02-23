@@ -17,16 +17,16 @@
 
                 if(isset($_GET['p_id'])) {
                     $selected_post_id = escape($_GET['p_id']);
-                    $selected_post_user = escape($_GET['user']);
+                    $selected_post_author = escape($_GET['author']);
                 }
 
-                echo "<h2 class='text-muted'>All Posts by {$selected_post_user}</h2>";
+                echo "<h2 class='text-muted'>All Posts by {$selected_post_author}</h2>";
 
-                $result = selectStatusQuery('posts', 'post_user', $selected_post_user);
+                $result = selectStatusQuery('posts', 'post_author', $selected_post_author);
 
                 while($row = mysqli_fetch_assoc($result)) {
                     $post_title = escape($row['post_title']);
-                    $post_user = escape($row['post_user']);
+                    $post_author = escape($row['post_author']);
                     $post_date = escape($row['post_date']);
                     $post_image = escape($row['post_image']);
                     $post_content = escape($row['post_content']);

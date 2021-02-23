@@ -7,21 +7,23 @@
     $select_posts_by_id = selectStatusQuery('posts', 'post_id', $p_id);
 
     while($row = mysqli_fetch_assoc($select_posts_by_id)) {
-        $post_id = escape($row['post_id']);
-        $post_author = escape($row['post_author']);
-        $post_title = escape($row['post_title']);
-        $post_category_id = escape($row['post_category_id']);
-        $post_status = escape($row['post_status']);
-        $post_image = escape($row['post_image']);
-        $post_content = escape($row['post_content']);
-        $post_tags = escape($row['post_tags']);
-        $post_comment_count = escape($row['post_comment_count']);
-        $post_date = escape($row['post_date']);
+        $post_id = $row['post_id'];
+        $post_author = $row['post_author'];
+        $post_title = $row['post_title'];
+        $post_category_id = $row['post_category_id'];
+        $post_status = $row['post_status'];
+        $post_image = $row['post_image'];
+        $post_content = $row['post_content'];
+        $post_tags = $row['post_tags'];
+        $post_comment_count = $row['post_comment_count'];
+        $post_date = $row['post_date'];
     }
 
     if(isset($_POST['update_post'])) {
+        $author_query = selectStatusQuery('authors', 'author_id', escape($_POST['author_id']));
+        $row = mysqli_fetch_array($author_query);
         
-        $post_author = escape($_POST['post_author']);
+        $post_author = escape($row['author_name']);
         $post_title = escape($_POST['post_title']);
         $post_category_id = escape($_POST['post_category']);
         $post_status = escape($_POST['post_status']);
@@ -39,6 +41,7 @@
                 $post_image = escape($row['post_image']);
             }
         }
+        // $post_author = htmlspecialchars($post_author);
 
         $query = "UPDATE posts SET ";
         $query .="post_title  = '{$post_title}', ";
@@ -73,7 +76,6 @@
         <label for="category">Category</label>
         <select class="form-control" value="<?php echo $post_category_id ?>" name="post_category" id="post_category">
 
-
             <?php 
 
                 $select_categories = selectQuery('categories');
@@ -93,28 +95,26 @@
                 }
             ?>
 
-
-
         </select>
 
     </div>
 
     <div class="form-group">
         <label for="authors">Author</label>
-        <select class="form-control" name="post_author" id="">
+        <select class="form-control" name="author_id" id="">
             <?php 
         
                 $select_authors = selectQuery('authors');
                 
                 while($row = mysqli_fetch_assoc($select_authors)) {
                     $author_id = escape($row['author_id']);
-                    $author_name = escape($row['author_name']);
+                    $author_name = stripslashes($row['author_name']);
                     
                     if($author_name == $post_author) {
-                        echo "<option selected value='{$author_name}'>{$author_name}</option>";
+                        echo "<option selected value='{$author_id}'>{$author_name}</option>";
 
                     } else {
-                        echo "<option value='{$author_name}'>{$author_name}</option>";
+                        echo "<option value='{$author_id}'>{$author_name}</option>";
                     }
                 }
             

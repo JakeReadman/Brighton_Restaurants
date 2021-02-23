@@ -96,7 +96,7 @@
         
             while($row = mysqli_fetch_assoc($select_posts)) {
                 $post_id = escape($row['post_id']);
-                $post_author = escape($row['post_author']);
+                $post_author = stripslashes(escape($row['post_author']));
                 $post_title = escape($row['post_title']);
                 $post_category_id = escape($row['post_category_id']);
                 $post_status = escape($row['post_status']);

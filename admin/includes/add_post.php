@@ -1,14 +1,15 @@
 <?php
 
     if(isset($_POST['create_post'])) {
+        $author_query = selectStatusQuery('authors', 'author_id', escape($_POST['author_id']));
+        $row = mysqli_fetch_array($author_query);
+        
+        $post_author = escape($row['author_name']);
         $post_title = escape($_POST['title']);
-        $post_author = escape($_POST['post_author']);
         $post_category_id = escape($_POST['post_category']);
         $post_status = escape($_POST['post_status']);
-
         $post_image = $_FILES['image']['name'];
         $post_image_temp = $_FILES['image']['tmp_name'];
-
         $post_tags = escape($_POST['post_tags']);
         $post_content = escape($_POST['post_content']);
         $post_date = date('d-m-y');
@@ -65,18 +66,17 @@
 
 
     <div class="form-group">
-        <label for="authors">Authors</label>
-        <select class="form-control" name="post_author" id="">
-            <option value="">Select Author</option>
+        <label for="authors">Author</label>
+        <select class="form-control" name="author_id" id="">
             <?php 
         
                 $select_authors = selectQuery('authors');
                 
-                while($row = mysqli_fetch_assoc($select_authors )) {
-                $author_id = escape($row['author_id']);
-                $author_name = escape($row['author_name']);
+                while($row = mysqli_fetch_assoc($select_authors)) {
+                    $author_id = escape($row['author_id']);
+                    $author_name = stripslashes($row['author_name']);
                     
-                    echo "<option value='$author_name'>{$author_name}</option>";
+                    echo "<option value='{$author_id}'>{$author_name}</option>";
                     
                 }
             

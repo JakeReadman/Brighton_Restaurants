@@ -17,7 +17,7 @@
 
                 if(isset($_POST['submit'])) {
                     $search = escape($_POST['search']);
-                    $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' OR post_title LIKE '%$search%' OR post_user LIKE '%$search%'";
+                    $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' OR post_title LIKE '%$search%' OR post_author LIKE '%$search%'";
                     $search_query = mysqli_query($connection, $query);
 
                     if(!$search_query) {
@@ -33,7 +33,7 @@
                         while($row = mysqli_fetch_assoc($search_query)) {
                             $post_id = escape($row['post_id']);
                             $post_title = escape($row['post_title']);
-                            $post_user = escape($row['post_user']);
+                            $post_author = escape($row['post_author']);
                             $post_date = escape($row['post_date']);
                             $post_image = escape($row['post_image']);
                             $post_content = escape($row['post_content']);
@@ -46,7 +46,7 @@
             </h2>
             <p class="lead">
                 by <a
-                    href="user_posts.php?user=<?php echo $post_user ?>&p_id=<?php echo $post_id ?>"><?php echo $post_user ?></a>
+                    href="author_posts.php?author=<?php echo $post_author ?>&p_id=<?php echo $post_id ?>"><?php echo $post_author ?></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
             <hr>
