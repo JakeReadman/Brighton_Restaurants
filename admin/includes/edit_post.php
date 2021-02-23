@@ -8,7 +8,7 @@
 
     while($row = mysqli_fetch_assoc($select_posts_by_id)) {
         $post_id = escape($row['post_id']);
-        $post_user = escape($row['post_user']);
+        $post_author = escape($row['post_author']);
         $post_title = escape($row['post_title']);
         $post_category_id = escape($row['post_category_id']);
         $post_status = escape($row['post_status']);
@@ -21,7 +21,7 @@
 
     if(isset($_POST['update_post'])) {
         
-        $post_user = escape($_POST['post_user']);
+        $post_author = escape($_POST['post_author']);
         $post_title = escape($_POST['post_title']);
         $post_category_id = escape($_POST['post_category']);
         $post_status = escape($_POST['post_status']);
@@ -44,7 +44,7 @@
         $query .="post_title  = '{$post_title}', ";
         $query .="post_category_id = '{$post_category_id}', ";
         $query .="post_date   =  now(), ";
-        $query .="post_user = '{$post_user}', ";
+        $query .="post_author = '{$post_author}', ";
         $query .="post_status = '{$post_status}', ";
         $query .="post_tags   = '{$post_tags}', ";
         $query .="post_content= '{$post_content}', ";
@@ -100,25 +100,21 @@
     </div>
 
     <div class="form-group">
-        <label for="users">Users</label>
-        <select class="form-control" name="post_user" id="">
+        <label for="authors">Author</label>
+        <select class="form-control" name="post_author" id="">
             <?php 
         
-                $select_users = selectQuery('users');
+                $select_authors = selectQuery('authors');
                 
-                confirmQuery($select_users);
-
-                while($row = mysqli_fetch_assoc($select_users)) {
-                    $user_id = escape($row['user_id']);
-                    $username = escape($row['username']);
-                    $user_firstname = escape($row['user_firstname']);
-                    $user_lastname = escape($row['user_lastname']);
-
-                    if($username == $post_user) {
-                        echo "<option selected value='{$username}'>{$username}</option>";
+                while($row = mysqli_fetch_assoc($select_authors)) {
+                    $author_id = escape($row['author_id']);
+                    $author_name = escape($row['author_name']);
+                    
+                    if($author_name == $post_author) {
+                        echo "<option selected value='{$author_name}'>{$author_name}</option>";
 
                     } else {
-                        echo "<option value='{$username}'>{$username}</option>";
+                        echo "<option value='{$author_name}'>{$author_name}</option>";
                     }
                 }
             

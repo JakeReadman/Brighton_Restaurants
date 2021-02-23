@@ -2,7 +2,7 @@
 
     if(isset($_POST['create_post'])) {
         $post_title = escape($_POST['title']);
-        $post_user = escape($_POST['post_user']);
+        $post_author = escape($_POST['post_author']);
         $post_category_id = escape($_POST['post_category']);
         $post_status = escape($_POST['post_status']);
 
@@ -15,7 +15,7 @@
 
         move_uploaded_file($post_image_temp, "../img/$post_image");
         
-        $query = "INSERT INTO posts(post_category_id, post_title, post_user, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_category_id},'{$post_title}','{$post_user}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
+        $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
              
       $create_post_query = mysqli_query($connection, $query);  
           
@@ -65,20 +65,18 @@
 
 
     <div class="form-group">
-        <label for="users">Users</label>
-        <select class="form-control" name="post_user" id="">
-            <option value="">Select User</option>
+        <label for="authors">Authors</label>
+        <select class="form-control" name="post_author" id="">
+            <option value="">Select Author</option>
             <?php 
         
-                $select_users = selectQuery('users');
+                $select_authors = selectQuery('authors');
                 
-                while($row = mysqli_fetch_assoc($select_users )) {
-                $user_id = escape($row['user_id']);
-                $username = escape($row['username']);
-                $user_firstname = escape($row['user_firstname']);
-                $user_lastname = escape($row['user_lastname']);
+                while($row = mysqli_fetch_assoc($select_authors )) {
+                $author_id = escape($row['author_id']);
+                $author_name = escape($row['author_name']);
                     
-                    echo "<option value='$username'>{$username}</option>";
+                    echo "<option value='$author_name'>{$author_name}</option>";
                     
                 }
             
