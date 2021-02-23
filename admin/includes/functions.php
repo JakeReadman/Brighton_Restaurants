@@ -103,6 +103,57 @@ function deleteCategory() {
     }
 }
 
+//Insert Authors Query
+function insertAuthors() {
+
+    global $connection;
+
+    if(isset($_POST['submit'])) {
+        $author_name = $_POST['author_name'];
+
+        if($author_name == "" || empty($author_name)) {
+            echo "This field should not be empty";
+        } else {
+            $query = "INSERT INTO authors(author_name) VALUE('{$author_name}')";
+            $create_author_query = mysqli_query($connection, $query);
+
+            if(!$create_author_query) {
+                die('QUERY FAILED' . mysqli_error($connection));
+            }
+        }
+    }   
+}
+
+//Find All Authors Query
+function findAllAuthors() {
+
+    global $connection;
+    $select_authors = selectQuery('authors');
+
+    while($row = mysqli_fetch_assoc($select_authors)) {
+        $author_id = $row['author_id'];
+        $author_name = $row['author_name'];
+
+        echo "<tr>";
+        echo "<td>{$author_id}</td>";
+        echo "<td>{$author_name}</td>";
+        echo "<td><a class='btn btn-danger' href='authors.php?delete={$author_id}'>Delete</a></td>";
+        echo "<td><a class='btn btn-warning' href='authors.php?edit={$author_id}'>Edit</a></td>";
+        echo "<tr>";
+    }
+}
+
+function deleteAuthor() {
+    global $connection;
+
+    if(isset($_GET['delete'])) {
+        $get_author_id = $_GET['delete'];
+        $query = "DELETE FROM authors WHERE author_id = {$get_author_id}";
+        $delete_query = mysqli_query($connection, $query);
+        header("location: authors.php");
+    }
+}
+
 function confirmQuery($result) {
     global $connection;
 
