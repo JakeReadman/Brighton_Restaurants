@@ -75,6 +75,9 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="authors.php"><i class="fa fa-fw fa-dashboard"></i> Authors</a>
+                    </li>
+                    <li>
                         <a href="profile.php"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
                     </li>
                 </ul>

@@ -57,7 +57,7 @@ function insertCategories() {
     global $connection;
 
     if(isset($_POST['submit'])) {
-        $cat_title = $_POST['cat_title'];
+        $cat_title = escape($_POST['cat_title']);
 
         if($cat_title == "" || empty($cat_title)) {
             echo "This field should not be empty";
@@ -96,7 +96,7 @@ function deleteCategory() {
     global $connection;
 
     if(isset($_GET['delete'])) {
-        $get_cat_id = $_GET['delete'];
+        $get_cat_id = escape($_GET['delete']);
         $query = "DELETE FROM categories WHERE cat_id = {$get_cat_id}";
         $delete_query = mysqli_query($connection, $query);
         header("location: categories.php");
@@ -109,7 +109,7 @@ function insertAuthors() {
     global $connection;
 
     if(isset($_POST['submit'])) {
-        $author_name = $_POST['author_name'];
+        $author_name = escape($_POST['author_name']);
 
         if($author_name == "" || empty($author_name)) {
             echo "This field should not be empty";
@@ -147,7 +147,7 @@ function deleteAuthor() {
     global $connection;
 
     if(isset($_GET['delete'])) {
-        $get_author_id = $_GET['delete'];
+        $get_author_id = escape($_GET['delete']);
         $query = "DELETE FROM authors WHERE author_id = {$get_author_id}";
         $delete_query = mysqli_query($connection, $query);
         header("location: authors.php");
