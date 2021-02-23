@@ -51,55 +51,55 @@ function onlineUsers() {
 
 // onlineUsers();
 
-//Insert Categories Query
-function insertCategories() {
+//Insert Restaurants Query
+function insertRestaurants() {
 
     global $connection;
 
     if(isset($_POST['submit'])) {
-        $cat_title = escape($_POST['cat_title']);
+        $restaurant_title = escape($_POST['restaurant_title']);
 
-        if($cat_title == "" || empty($cat_title)) {
+        if($restaurant_title == "" || empty($restaurant_title)) {
             echo "This field should not be empty";
         } else {
-            $query = "INSERT INTO categories(cat_title) VALUE('{$cat_title}')";
-            $create_category_query = mysqli_query($connection, $query);
+            $query = "INSERT INTO restaurants(restaurant_title) VALUE('{$restaurant_title}')";
+            $create_restaurant_query = mysqli_query($connection, $query);
 
-            if(!$create_category_query) {
+            if(!$create_restaurant_query) {
                 die('QUERY FAILED' . mysqli_error($connection));
             }
         }
     }   
 }
 
-//Find All Categories Query
-function findAllCategories() {
+//Find All Restaurants Query
+function findAllRestaurants() {
 
     global $connection;
-    $query = "SELECT * FROM categories";
-    $select_categories = mysqli_query($connection, $query);
+    $query = "SELECT * FROM restaurants";
+    $select_restaurants = mysqli_query($connection, $query);
 
-    while($row = mysqli_fetch_assoc($select_categories)) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
+    while($row = mysqli_fetch_assoc($select_restaurants)) {
+        $restaurant_id = $row['restaurant_id'];
+        $restaurant_title = $row['restaurant_title'];
 
         echo "<tr>";
-        echo "<td>{$cat_id}</td>";
-        echo "<td>{$cat_title}</td>";
-        echo "<td><a class='btn btn-danger' href='categories.php?delete={$cat_id}'>Delete</a></td>";
-        echo "<td><a class='btn btn-warning' href='categories.php?edit={$cat_id}'>Edit</a></td>";
+        echo "<td>{$restaurant_id}</td>";
+        echo "<td>{$restaurant_title}</td>";
+        echo "<td><a class='btn btn-danger' href='restaurants.php?delete={$restaurant_id}'>Delete</a></td>";
+        echo "<td><a class='btn btn-warning' href='restaurants.php?edit={$restaurant_id}'>Edit</a></td>";
         echo "<tr>";
     }
 }
 
-function deleteCategory() {
+function deleteRestaurant() {
     global $connection;
 
     if(isset($_GET['delete'])) {
-        $get_cat_id = escape($_GET['delete']);
-        $query = "DELETE FROM categories WHERE cat_id = {$get_cat_id}";
+        $get_restaurant_id = escape($_GET['delete']);
+        $query = "DELETE FROM restaurants WHERE restaurant_id = {$get_restaurant_id}";
         $delete_query = mysqli_query($connection, $query);
-        header("location: categories.php");
+        header("location: restaurants.php");
     }
 }
 
