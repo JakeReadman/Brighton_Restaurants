@@ -48,7 +48,7 @@
                 while($row = mysqli_fetch_assoc($result)) {
                     $post_id = escape($row['post_id']);
                     $post_title = escape($row['post_title']);
-                    $post_author = escape($row['post_author']);
+                    $post_author = stripslashes(escape($row['post_author']));
                     $post_date = escape($row['post_date']);
                     $post_image = escape($row['post_image']);
                     $post_content = substr($row['post_content'], 0, 100);
