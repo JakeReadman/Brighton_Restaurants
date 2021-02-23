@@ -6,7 +6,7 @@
         
         $post_author = escape($row['author_name']);
         $post_title = escape($_POST['title']);
-        $post_category_id = escape($_POST['post_category']);
+        $post_restaurant_id = escape($_POST['post_restaurant']);
         $post_status = escape($_POST['post_status']);
         $post_image = $_FILES['image']['name'];
         $post_image_temp = $_FILES['image']['tmp_name'];
@@ -16,7 +16,7 @@
 
         move_uploaded_file($post_image_temp, "../img/$post_image");
         
-        $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
+        $query = "INSERT INTO posts(post_restaurant_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_restaurant_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
              
       $create_post_query = mysqli_query($connection, $query);  
           
@@ -40,19 +40,19 @@
     </div>
 
     <div class="form-group">
-        <label for="category">Category</label>
-        <select class="form-control" name="post_category" id="">
-            <option value="">Select Category</option>
+        <label for="restaurant">Restaurant</label>
+        <select class="form-control" name="post_restaurant" id="">
+            <option value="">Select Restaurant</option>
 
             <?php 
         
-            $select_categories = selectQuery('categories');
+            $select_restaurants = selectQuery('restaurants');
             
-            while($row = mysqli_fetch_assoc($select_categories )) {
-            $cat_id = escape($row['cat_id']);
-            $cat_title = escape($row['cat_title']);
+            while($row = mysqli_fetch_assoc($select_restaurants )) {
+            $restaurant_id = escape($row['restaurant_id']);
+            $restaurant_title = escape($row['restaurant_title']);
                     
-                echo "<option value='$cat_id'>{$cat_title}</option>";
+                echo "<option value='$restaurant_id'>{$restaurant_title}</option>";
                    
             }
         

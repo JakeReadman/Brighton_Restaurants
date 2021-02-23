@@ -49,23 +49,23 @@
             <?php endif; ?>
         </div>
 
-        <!-- Blog Categories Well -->
+        <!-- Blog Restaurants Well -->
         <div class="well">
 
 
-            <h4>Blog Categories</h4>
+            <h4>Blog Restaurants</h4>
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="list-unstyled">
 
                         <?php 
-                            $select_categories_sidebar = selectQuery('categories');
+                            $select_restaurants_sidebar = selectQuery('restaurants');
                             
-                            while($row = mysqli_fetch_assoc($select_categories_sidebar)) {
-                                $cat_title = escape($row['cat_title']);
-                                $cat_id = escape($row['cat_id']);
+                            while($row = mysqli_fetch_assoc($select_restaurants_sidebar)) {
+                                $restaurant_title = escape($row['restaurant_title']);
+                                $restaurant_id = escape($row['restaurant_id']);
             
-                                echo "<li> <a href='category.php?category={$cat_id}'>{$cat_title}</a></li>";
+                                echo "<li> <a href='restaurant.php?restaurant={$restaurant_id}'>{$restaurant_title}</a></li>";
                             }
                         ?>
 

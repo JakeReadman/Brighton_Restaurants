@@ -32,27 +32,6 @@
                 echo "<td>{$user_lastname}</td>";
                 echo "<td>{$user_email}</td>";
                 echo "<td>{$user_role}</td>";
-
-                // $query = "SELECT * FROM comments WHERE cat_id = {$post_category_id}";
-                // $select_categories_id = mysqli_query($connection, $query);
-
-                // while($row = mysqli_fetch_assoc($select_categories_id)) {
-                //     $cat_id = escape($row['cat_id']);
-                //     $cat_title = escape($row['cat_title']);
-                    
-                //     echo "<td>{$cat_title}</td>";
-                // }
-
-
-                // $query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
-                // $select_post_id_query = mysqli_query($connection, $query);
-                // while($row = mysqli_fetch_assoc($select_post_id_query)) {
-                //     $post_id = escape($row['post_id']);
-                //     $post_title = escape($row['post_title']);
-
-                //     echo "<td><a href='../post.php?p_id=$post_id'>{$post_title}</a></td>";
-                // }           
-
                 echo "<td><a class='btn btn-success' href='users.php?make_admin={$user_id}'>Make Admin</a></td>";
                 echo "<td><a class='btn btn-warning' href='users.php?make_subscriber={$user_id}'>Make Subscriber</a></td>";
                 echo "<td><a class='btn btn-info' href='users.php?source=edit_user&edit_user={$user_id}'>Edit</a></td>";

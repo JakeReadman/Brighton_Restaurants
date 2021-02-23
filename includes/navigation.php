@@ -15,19 +15,19 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <i
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants <i
                             class="fa fa-fw fa-caret-down"></i></a>
                     <ul class="dropdown-menu">
 
                         <?php 
                     
-                        $select_all_categories_query = selectQuery('categories');
+                        $select_all_restaurants_query = selectQuery('restaurants');
 
-                        while($row = mysqli_fetch_assoc($select_all_categories_query)) {
-                            $cat_title = escape($row['cat_title']);
-                            $cat_id = escape($row['cat_id']);
+                        while($row = mysqli_fetch_assoc($select_all_restaurants_query)) {
+                            $restaurant_title = escape($row['restaurant_title']);
+                            $restaurant_id = escape($row['restaurant_id']);
 
-                            $cat_class = '';
+                            $restaurant_class = '';
                             $registration_class = '';
                             $login_class = '';
                             $contact_class = '';
@@ -36,8 +36,8 @@
                             $pageName = basename($_SERVER['PHP_SELF']);
                             $registration = 'registration.php';
                             
-                            if(isset($_GET['category']) && $_GET['category'] == $cat_id) {
-                                $cat_class = 'active';
+                            if(isset($_GET['restaurant']) && $_GET['restaurant'] == $restaurant_id) {
+                                $restaurant_class = 'active';
                             } else if($pageName == $registration) {
                                 $registration_class = 'active';
                             } else if($pageName == 'login.php') {
@@ -46,7 +46,7 @@
                                 $contact_class = 'active';
                             }
 
-                            echo "<li class='$cat_class'> <a href='category.php?category={$cat_id}'>{$cat_title}</a></li>";
+                            echo "<li class='$restaurant_class'> <a href='restaurant.php?restaurant={$restaurant_id}'>{$restaurant_title}</a></li>";
                         }
                     
                     ?>

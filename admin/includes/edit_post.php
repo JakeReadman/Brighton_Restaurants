@@ -10,7 +10,7 @@
         $post_id = $row['post_id'];
         $post_author = $row['post_author'];
         $post_title = $row['post_title'];
-        $post_category_id = $row['post_category_id'];
+        $post_restaurant_id = $row['post_restaurant_id'];
         $post_status = $row['post_status'];
         $post_image = $row['post_image'];
         $post_content = $row['post_content'];
@@ -25,7 +25,7 @@
         
         $post_author = escape($row['author_name']);
         $post_title = escape($_POST['post_title']);
-        $post_category_id = escape($_POST['post_category']);
+        $post_restaurant_id = escape($_POST['post_restaurant']);
         $post_status = escape($_POST['post_status']);
         $post_image = $_FILES['image']['name'];
         $post_image_temp = $_FILES['image']['tmp_name'];
@@ -45,7 +45,7 @@
 
         $query = "UPDATE posts SET ";
         $query .="post_title  = '{$post_title}', ";
-        $query .="post_category_id = '{$post_category_id}', ";
+        $query .="post_restaurant_id = '{$post_restaurant_id}', ";
         $query .="post_date   =  now(), ";
         $query .="post_author = '{$post_author}', ";
         $query .="post_status = '{$post_status}', ";
@@ -73,24 +73,25 @@
     </div>
 
     <div class="form-group">
-        <label for="category">Category</label>
-        <select class="form-control" value="<?php echo $post_category_id ?>" name="post_category" id="post_category">
+        <label for="restaurant">Restaurant</label>
+        <select class="form-control" value="<?php echo $post_restaurant_id ?>" name="post_restaurant"
+            id="post_restaurant">
 
             <?php 
 
-                $select_categories = selectQuery('categories');
+                $select_restaurants = selectQuery('restaurants');
 
-                confirmQuery($select_categories);
+                confirmQuery($select_restaurants);
  
-                while($row = mysqli_fetch_assoc($select_categories)) {
-                    $cat_id = escape($row['cat_id']);
-                    $cat_title = escape($row['cat_title']);
+                while($row = mysqli_fetch_assoc($select_restaurants)) {
+                    $restaurant_id = escape($row['restaurant_id']);
+                    $restaurant_title = escape($row['restaurant_title']);
 
-                    if($cat_id == $post_category_id) {
-                        echo "<option selected value='{$cat_id}'>{$cat_title}</option>";
+                    if($restaurant_id == $post_restaurant_id) {
+                        echo "<option selected value='{$restaurant_id}'>{$restaurant_title}</option>";
 
                     } else {
-                        echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                        echo "<option value='{$restaurant_id}'>{$restaurant_title}</option>";
                     }
                 }
             ?>

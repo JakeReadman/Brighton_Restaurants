@@ -29,7 +29,7 @@
                 
                     while($row = mysqli_fetch_assoc($select_post_query)) {
                         $post_title = escape($row['post_title']);
-                        $post_category_id = escape($row['post_category_id']);
+                        $post_restaurant_id = escape($row['post_restaurant_id']);
                         $post_date = escape($row['post_date']);
                         $post_author = escape($row['post_author']);
                         $post_status = escape($row['post_status']);
@@ -39,7 +39,7 @@
 
                     }
 
-                    $new_query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_category_id},'{$post_title}','{$post_author}', now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
+                    $new_query = "INSERT INTO posts(post_restaurant_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_restaurant_id},'{$post_title}','{$post_author}', now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
 
                     $update_post_status = mysqli_query($connection, $new_query);
                     confirmQuery($update_post_status);
@@ -76,7 +76,7 @@
                 <th>Id</th>
                 <th>Author</th>
                 <th>Title</th>
-                <th>Category</th>
+                <th>Restaurant</th>
                 <th>Status</th>
                 <th>Image</th>
                 <th>Tags</th>
@@ -98,7 +98,7 @@
                 $post_id = escape($row['post_id']);
                 $post_author = stripslashes(escape($row['post_author']));
                 $post_title = escape($row['post_title']);
-                $post_category_id = escape($row['post_category_id']);
+                $post_restaurant_id = escape($row['post_restaurant_id']);
                 $post_status = escape($row['post_status']);
                 $post_image = escape($row['post_image']);
                 $post_tags = escape($row['post_tags']);
@@ -112,13 +112,13 @@
 
                 echo "<td><a href='../post.php?p_id={$post_id}'>{$post_title}</a></td>";
 
-                $select_categories_id = selectStatusQuery('categories', 'cat_id', $post_category_id);
+                $select_restaurants_id = selectStatusQuery('restaurants', 'restaurant_id', $post_restaurant_id);
 
-                while($row = mysqli_fetch_assoc($select_categories_id)) {
-                    $cat_id = escape($row['cat_id']);
-                    $cat_title = escape($row['cat_title']);
+                while($row = mysqli_fetch_assoc($select_restaurants_id)) {
+                    $restaurant_id = escape($row['restaurant_id']);
+                    $restaurant_title = escape($row['restaurant_title']);
                     
-                    echo "<td>{$cat_title}</td>";
+                    echo "<td>{$restaurant_title}</td>";
                 }
 
 
