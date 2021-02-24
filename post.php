@@ -137,29 +137,34 @@
             <!-- Comments -->
 
             <?php 
-            
-                if(isset($_POST['create_comment'])) {
-                    $selected_comment_id = escape($_GET['p_id']);
-                    $comment_author = escape($_POST['comment_author']);
-                    $comment_email = escape($_POST['comment_email']);
-                    $comment_content = escape($_POST['comment_content']);
 
-                    if(!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
-
-                        $query = "INSERT INTO comments (comment_post_id, comment_post_author, comment_post_email, comment_post_content, comment_post_status, comment_post_date)";
-                        $query .= "VALUES ($selected_comment_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'Pending', now())";
-
-                        $create_comment_query = mysqli_query($connection, $query);
-
-                        if(!$create_comment_query) {
-                            die('QUERY FAILED' . mysqli_error($connection));
-                        }
-
-                       
-                    } else {
-                        echo "<script>alert('Fields Cannot Be Empty')</script>";
+                if(isLoggedIn()) {
+                    $user = selectStatusQuery('users', 'username', $_SESSION['username']);
+                    while($row = mysqli_fetch_assoc($user)) {
+                        $comment_author = escape($row['username']);
+                        $comment_email = escape($row['user_email']);
                     }
-                }
+                            
+                    if(isset($_POST['create_comment'])) {
+                        $selected_comment_id = escape($_GET['p_id']);
+                        $comment_content = escape($_POST['comment_content']);
+
+                        if(!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
+
+                            $query = "INSERT INTO comments (comment_post_id, comment_post_author, comment_post_email, comment_post_content, comment_post_status, comment_post_date)";
+                            $query .= "VALUES ($selected_comment_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'Pending', now())";
+
+                            $create_comment_query = mysqli_query($connection, $query);
+
+                            if(!$create_comment_query) {
+                                die('QUERY FAILED' . mysqli_error($connection));
+                            }
+
+                        
+                        } else {
+                            echo "<script>alert('Fields Cannot Be Empty')</script>";
+                        }
+                    }
             
             ?>
 
@@ -168,14 +173,6 @@
                 <h4>Leave a Comment:</h4>
                 <form action="" method="post" role="form">
                     <div class="form-group">
-                        <label for="Author">Author</label>
-                        <input type="text" class="form-control" name="comment_author">
-                    </div>
-                    <div class="form-group">
-                        <label for="Email">Email</label>
-                        <input type="email" class="form-control" name="comment_email">
-                    </div>
-                    <div class="form-group">
                         <label for="comment">Your Comment</label>
                         <textarea class="form-control" name="comment_content" id="body" rows="3"></textarea>
                     </div>
@@ -183,6 +180,13 @@
                         class="btn btn-primary">Submit</button>
                 </form>
             </div>
+
+
+            <?php } else { ?>
+            <div class="well">
+                <h4>You must be <a href="login.php">Logged In</a> to leave a comment</h4>
+            </div>
+            <?php } ?>
 
             <hr>
 
