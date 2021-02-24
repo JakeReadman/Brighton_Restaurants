@@ -2,7 +2,7 @@
 
         <!-- Blog Search Well -->
         <div class="well">
-            <h4>Blog Search</h4>
+            <h4>Search</h4>
             <!-- Search Form -->
             <form action="search.php" method="post">
                 <div class="input-group">
