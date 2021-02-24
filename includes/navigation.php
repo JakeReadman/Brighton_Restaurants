@@ -15,41 +15,41 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants <i
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <i
                             class="fa fa-fw fa-caret-down"></i></a>
                     <ul class="dropdown-menu">
 
-                        <?php 
+                        <?php
                     
-                        $select_all_restaurants_query = selectQuery('restaurants');
+                            $query = "SELECT DISTINCT post_category FROM posts";
+                            $select_categories_nav = mysqli_query($connection, $query);
+                                    
+                            while($row = mysqli_fetch_assoc($select_categories_nav)) {
+                                $category_title = escape($row['post_category']);
 
-                        while($row = mysqli_fetch_assoc($select_all_restaurants_query)) {
-                            $restaurant_title = escape($row['restaurant_title']);
-                            $restaurant_id = escape($row['restaurant_id']);
+                                    $category_class = '';
+                                    $registration_class = '';
+                                    $login_class = '';
+                                    $contact_class = '';
+                                    $home_class = '';
 
-                            $restaurant_class = '';
-                            $registration_class = '';
-                            $login_class = '';
-                            $contact_class = '';
-                            $home_class = '';
+                                    $pageName = basename($_SERVER['PHP_SELF']);
+                                    $registration = 'registration.php';
+                                    
+                                    if(isset($_GET['category']) && $_GET['category'] == $category_title) {
+                                        $category_class = 'active';
+                                    } else if($pageName == $registration) {
+                                        $registration_class = 'active';
+                                    } else if($pageName == 'login.php') {
+                                        $login_class = 'active';
+                                    } else if($pageName == 'contact.php') {
+                                        $contact_class = 'active';
+                                    }
 
-                            $pageName = basename($_SERVER['PHP_SELF']);
-                            $registration = 'registration.php';
+                                    echo "<li class='$category_class'> <a href='category.php?category=$category_title'>$category_title</a></li>";
+                                }
                             
-                            if(isset($_GET['restaurant']) && $_GET['restaurant'] == $restaurant_id) {
-                                $restaurant_class = 'active';
-                            } else if($pageName == $registration) {
-                                $registration_class = 'active';
-                            } else if($pageName == 'login.php') {
-                                $login_class = 'active';
-                            } else if($pageName == 'contact.php') {
-                                $contact_class = 'active';
-                            }
-
-                            echo "<li class='$restaurant_class'> <a href='restaurant.php?restaurant={$restaurant_id}'>{$restaurant_title}</a></li>";
-                        }
-                    
-                    ?>
+                            ?>
                     </ul>
                 </li>
                 <li class='<?php echo $contact_class ?>'>

@@ -10,13 +10,13 @@
         $post_status = escape($_POST['post_status']);
         $post_image = $_FILES['image']['name'];
         $post_image_temp = $_FILES['image']['tmp_name'];
-        $post_tags = escape($_POST['post_tags']);
+        $post_category = escape($_POST['post_category']);
         $post_content = escape($_POST['post_content']);
         $post_date = date('d-m-y');
 
         move_uploaded_file($post_image_temp, "../img/$post_image");
         
-        $query = "INSERT INTO posts(post_restaurant_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_restaurant_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
+        $query = "INSERT INTO posts(post_restaurant_id, post_title, post_author, post_date, post_image, post_content, post_category, post_status) VALUES({$post_restaurant_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_category}', '{$post_status}') "; 
              
       $create_post_query = mysqli_query($connection, $query);  
           
@@ -100,8 +100,8 @@
     </div>
 
     <div class="form-group">
-        <label for="post_tags">Post Tags</label>
-        <input type="text" class="form-control" name="post_tags">
+        <label for="post_category">Post Category</label>
+        <input type="text" class="form-control" name="post_category">
     </div>
 
     <div class="form-group">

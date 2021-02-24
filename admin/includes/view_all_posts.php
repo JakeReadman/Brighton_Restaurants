@@ -34,12 +34,12 @@
                         $post_author = escape($row['post_author']);
                         $post_status = escape($row['post_status']);
                         $post_image = escape($row['post_image']);
-                        $post_tags = escape($row['post_tags']);
+                        $post_category = escape($row['post_category']);
                         $post_content = escape($row['post_content']);
 
                     }
 
-                    $new_query = "INSERT INTO posts(post_restaurant_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_restaurant_id},'{$post_title}','{$post_author}', now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
+                    $new_query = "INSERT INTO posts(post_restaurant_id, post_title, post_author, post_date, post_image, post_content, post_category, post_status) VALUES({$post_restaurant_id},'{$post_title}','{$post_author}', now(),'{$post_image}','{$post_content}','{$post_category}', '{$post_status}') "; 
 
                     $update_post_status = mysqli_query($connection, $new_query);
                     confirmQuery($update_post_status);
@@ -79,7 +79,7 @@
                 <th>Restaurant</th>
                 <th>Status</th>
                 <th>Image</th>
-                <th>Tags</th>
+                <th>Category</th>
                 <th>Comments</th>
                 <th>Views</th>
                 <th>Date</th>
@@ -101,7 +101,7 @@
                 $post_restaurant_id = escape($row['post_restaurant_id']);
                 $post_status = escape($row['post_status']);
                 $post_image = escape($row['post_image']);
-                $post_tags = escape($row['post_tags']);
+                $post_category = escape($row['post_category']);
                 $post_views = escape($row['post_views']);
                 $post_date = escape($row['post_date']);
 
@@ -124,7 +124,7 @@
 
                 echo "<td>{$post_status}</td>";
                 echo "<td><img width='100px' class='img-responsive' src='../img/{$post_image}' alt='Post Image'</td>";
-                echo "<td>{$post_tags}</td>";
+                echo "<td>{$post_category}</td>";
 
                 $send_comment_query = selectStatusQuery('comments', 'comment_post_id', $post_id);
 

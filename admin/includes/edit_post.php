@@ -14,7 +14,7 @@
         $post_status = $row['post_status'];
         $post_image = $row['post_image'];
         $post_content = $row['post_content'];
-        $post_tags = $row['post_tags'];
+        $post_category = $row['post_category'];
         $post_comment_count = $row['post_comment_count'];
         $post_date = $row['post_date'];
     }
@@ -30,7 +30,7 @@
         $post_image = $_FILES['image']['name'];
         $post_image_temp = $_FILES['image']['tmp_name'];
         $post_content = escape($_POST['post_content']);
-        $post_tags = escape($_POST['post_tags']);
+        $post_category = escape($_POST['post_category']);
 
         move_uploaded_file($post_image_temp, "../img/$post_image");
 
@@ -49,7 +49,7 @@
         $query .="post_date   =  now(), ";
         $query .="post_author = '{$post_author}', ";
         $query .="post_status = '{$post_status}', ";
-        $query .="post_tags   = '{$post_tags}', ";
+        $query .="post_category   = '{$post_category}', ";
         $query .="post_content= '{$post_content}', ";
         $query .="post_image  = '{$post_image}' ";
         $query .= "WHERE post_id = {$p_id} ";
@@ -125,7 +125,7 @@
     </div>
 
     <div class="form-group">
-        <label for="post_status">Role</label>
+        <label for="post_status">Status</label>
         <select class="form-control" name="post_status" id="post_status">
             <option value='<?php echo $post_status ?>'><?php echo ucfirst($post_status) ?></option>
 
@@ -149,8 +149,8 @@
     </div>
 
     <div class="form-group">
-        <label for="post_tags">Post Tags</label>
-        <input type="text" value="<?php echo $post_tags ?>" class="form-control" name="post_tags">
+        <label for="post_category">Post Category</label>
+        <input type="text" value="<?php echo $post_category ?>" class="form-control" name="post_category">
     </div>
 
     <div class="form-group">

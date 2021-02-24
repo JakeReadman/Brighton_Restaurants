@@ -53,19 +53,19 @@
         <div class="well">
 
 
-            <h4>Blog Restaurants</h4>
+            <h4>Categories</h4>
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="list-unstyled">
 
-                        <?php 
-                            $select_restaurants_sidebar = selectQuery('restaurants');
+                        <?php
+                            $query = "SELECT DISTINCT post_category FROM posts";
+                            $select_categories_sidebar = mysqli_query($connection, $query);
                             
-                            while($row = mysqli_fetch_assoc($select_restaurants_sidebar)) {
-                                $restaurant_title = escape($row['restaurant_title']);
-                                $restaurant_id = escape($row['restaurant_id']);
-            
-                                echo "<li> <a href='restaurant.php?restaurant={$restaurant_id}'>{$restaurant_title}</a></li>";
+                            while($row = mysqli_fetch_assoc($select_categories_sidebar)) {
+                                $category_title = escape($row['post_category']);
+                
+                                echo "<li> <a href='category.php?category=$category_title'>$category_title</a></li>";
                             }
                         ?>
 
