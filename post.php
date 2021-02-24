@@ -84,7 +84,6 @@
                         redirect("index.php");
                     }
 
-
                     while($row = mysqli_fetch_assoc($result)) {
                         $post_title = escape($row['post_title']);
                         $post_author = stripslashes(escape($row['post_author']));
