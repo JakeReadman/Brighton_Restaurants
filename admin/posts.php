@@ -8,12 +8,21 @@
     <div id="page-wrapper">
 
         <div class="container-fluid">
-
+            <?php
+                if(!isset($_GET['source'])) {
+                    $message = 'All Posts';
+                } else if($_GET['source'] == 'add_post') {
+                    $message = 'Add Post';
+                } else if($_GET['source'] == 'edit_post') {
+                    $message = 'Edit Post';
+                } else {
+                    $message = '';
+                }
+            ?>
             <!-- Page Heading -->
             <div class="row">
                 <h1 class="page-header">
-                    Admin Page
-                    <small>Author</small>
+                    <?php echo $message ?>
                 </h1>
 
                 <?php 

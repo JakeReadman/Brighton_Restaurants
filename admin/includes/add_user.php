@@ -8,10 +8,6 @@
         $user_email = escape($_POST['user_email']);
         $user_password = escape($_POST['user_password']);
 
-        // $user_image = escape($_FILES['image']['name']);
-        // $user_image_temp = escape($_FILES['image']['tmp_name']);
-        // move_uploaded_file($user_image_temp, "../img/$user_image");
-
         $password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
     
         $query = "INSERT INTO users(user_firstname, user_lastname, user_role, user_email, username, user_password) VALUES('{$user_firstname}', '{$user_lastname}','{$user_role}', '{$user_email}','{$username}', '{$password}')"; 

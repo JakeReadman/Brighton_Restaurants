@@ -7,14 +7,23 @@
 
     <div id="page-wrapper">
 
+        <?php 
+            $selected_post_id = escape($_GET['id']);       
+            $select_comments = selectStatusQuery('comments', 'comment_post_id', $selected_post_id);
+            $select_post_id_query = selectStatusQuery('posts', 'post_id', $selected_post_id);
+            while($row = mysqli_fetch_assoc($select_post_id_query)) {
+                $post_id = escape($row['post_id']);
+                $post_title = escape($row['post_title']);
+            }
+        ?>
+
         <div class="container-fluid">
 
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        Welcome To Admin
-                        <small><?php echo $_SESSION['username'] ?></small>
+                        All Comments for <a href='../post.php?p_id=<?php echo $post_id ?>'><?php echo $post_title ?></a>
                     </h1>
                 </div>
             </div>
@@ -37,11 +46,6 @@
                 <tbody>
 
                     <?php
-
-                        $selected_post_id = mysqli_real_escape_string($connection, $_GET['id']);       
-
-                        $query = "SELECT * FROM comments WHERE comment_post_id = $selected_post_id";
-                        $select_comments = mysqli_query($connection, $query);
                     
                         while($row = mysqli_fetch_assoc($select_comments)) {
                             $comment_id = escape($row['comment_id']);
@@ -57,34 +61,9 @@
                             echo "<td>{$comment_id}</td>";
                             echo "<td>{$comment_author}</td>";
                             echo "<td>{$comment_content}</td>";
-
-                            // $query = "SELECT * FROM comments WHERE cat_id = {$post_category_id}";
-                            // $select_categories_id = mysqli_query($connection, $query);
-
-                            // while($row = mysqli_fetch_assoc($select_categories_id)) {
-                            //     $cat_id = escape($row['cat_id']);
-                            //     $cat_title = escape($row['cat_title']);
-                                
-                            //     echo "<td>{$cat_title}</td>";
-                            // }
-
-
-
-
                             echo "<td>{$comment_email}</td>";
                             echo "<td>{$comment_status}</td>";
-
-
-                            $query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
-                            $select_post_id_query = mysqli_query($connection, $query);
-                            while($row = mysqli_fetch_assoc($select_post_id_query)) {
-                                $post_id = escape($row['post_id']);
-                                $post_title = escape($row['post_title']);
-
-                                echo "<td><a href='../post.php?p_id=$post_id'>{$post_title}</a></td>";
-                            }           
-                            
-                            
+                            echo "<td><a href='../post.php?p_id=$post_id'>{$post_title}</a></td>";
                             echo "<td>{$comment_date}</td>";
                             echo "<td><a class='btn btn-success' href='post_comments.php?approve=$comment_id&id=$selected_post_id'>Approve</a></td>";
                             echo "<td><a class='btn btn-danger' href='post_comments.php?reject=$comment_id&id=$selected_post_id'>Reject</a></td>";

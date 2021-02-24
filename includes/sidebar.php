@@ -30,7 +30,6 @@
             <?php else: ?>
 
             <h4>Login</h4>
-            <!-- Search Form -->
             <form action="includes/login_handler.php" method="post">
                 <div class="form-group">
                     <input name="username" placeholder="Enter Username" type="text" class="form-control">
@@ -44,12 +43,11 @@
                 <div class="form-group">
                     <a href="forgot_password.php?forgot=<?php ?>">Forgot Password?</a>
                 </div>
-                <!-- /.input-group -->
             </form>
             <?php endif; ?>
         </div>
 
-        <!-- Blog Restaurants Well -->
+        <!-- Restaurants Well -->
         <div class="well">
 
 

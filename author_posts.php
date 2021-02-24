@@ -49,7 +49,7 @@
                 }
             ?>
 
-            <!-- Blog Comments -->
+            <!-- Comments -->
 
             <?php 
             

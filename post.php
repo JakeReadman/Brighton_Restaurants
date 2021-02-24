@@ -6,6 +6,8 @@
 <?php include "includes/navigation.php"; ?>
 <?php 
 
+    //Post Likes Logic
+
     if(isset($_POST['liked'])) {
         $post_id = $_POST['postId'];
         $user_id = $_POST['userId'];
@@ -28,6 +30,7 @@
         exit();
     }
 
+    //Post Unlike Logic
     if(isset($_POST['unliked'])) {
         $post_id = $_POST['postId'];
         $user_id = $_POST['userId'];
@@ -57,14 +60,16 @@
 
     <div class="row">
 
-        <!-- Blog Entries Column -->
+        <!-- Restaurant Posts -->
         <div class="col-md-8">
 
             <?php 
-
+            
+                $published_message = '';
                 if(isset($_GET['p_id'])) {
                     $selected_post_id = escape($_GET['p_id']);
 
+                    //Update post views count
                     $view_query = "UPDATE posts SET post_views = post_views + 1 WHERE post_id = $selected_post_id";
                     $send_query = mysqli_query($connection, $view_query);
 
@@ -79,27 +84,29 @@
                     }
                     $result = mysqli_query($connection, $query);
 
-                    if(mysqli_num_rows($result) < 1) {
-                        echo "<script>alert('Post Not Published')</script>";
-                        redirect("index.php");
-                    }
-
                     while($row = mysqli_fetch_assoc($result)) {
                         $post_title = escape($row['post_title']);
+                        $post_restaurant_id = escape($row['post_restaurant_id']);
                         $post_author = stripslashes(escape($row['post_author']));
-                        $post_date = escape($row['post_date']);
+                        $post_date = date_create($row['post_date']);
+                        $post_date = date_format($post_date, 'jS M Y');
                         $post_image = escape($row['post_image']);
                         $post_content = escape($row['post_content']);
                         $post_likes = escape($row['post_likes']);
+                        $post_status = escape($row['post_status']);
+
+                        if($post_status != 'published') {
+                            $published_message = 'Draft';
+                        }
             ?>
 
+            <!-- Restaurant Post -->
             <h1 class="page-header">
                 <?php echo $post_title ?>
+                <small><?php echo $published_message ?></small>
             </h1>
-
-            <!-- First Post -->
             <p class="lead">
-                by <a
+                - <a
                     href="author_posts.php?author=<?php echo $post_author ?>&p_id=<?php echo $selected_post_id ?>"><?php echo $post_author ?></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
@@ -107,6 +114,12 @@
             <img class="img-responsive" src="img/<?php echo imagePlaceholder($post_image); ?>" alt="">
             <hr>
             <p><?php echo $post_content ?></p>
+            <?php 
+                $select_restaurant = selectStatusQuery('restaurants', 'restaurant_id', $post_restaurant_id); 
+                $row = mysqli_fetch_assoc($select_restaurant);
+                $restaurant_title = escape($row['restaurant_title']);
+                echo "<p><a href='restaurant.php?restaurant=$post_restaurant_id'>See all reviews on $restaurant_title</a></p>";
+            ?>
 
             <hr>
             <?php if(isLoggedin()): ?>
@@ -129,8 +142,7 @@
             <div class="clearfix"></div>
 
             <?php 
-                } 
-                    
+                }          
             ?>
 
             <!-- Comments -->
@@ -158,8 +170,7 @@
                             if(!$create_comment_query) {
                                 die('QUERY FAILED' . mysqli_error($connection));
                             }
-
-                        
+                   
                         } else {
                             echo "<script>alert('Fields Cannot Be Empty')</script>";
                         }

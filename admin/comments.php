@@ -12,8 +12,7 @@
             <!-- Page Heading -->
             <div class="row">
                 <h1 class="page-header">
-                    Admin Page
-                    <small>Author</small>
+                    All Comments
                 </h1>
 
                 <?php 

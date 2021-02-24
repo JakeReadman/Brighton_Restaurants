@@ -11,8 +11,8 @@ body {
 .pager {
   display: flex;
   justify-content: space-around;
-  padding-left: 20rem;
-  padding-right: 20rem;
+  margin-left: 40%;
+  margin-right: 40%;
 }
 
 .pager li .page-num {

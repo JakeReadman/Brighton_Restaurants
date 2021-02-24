@@ -8,12 +8,22 @@
     <div id="page-wrapper">
 
         <div class="container-fluid">
+            <?php
+                if(!isset($_GET['source'])) {
+                    $message = 'All Users';
+                } else if($_GET['source'] == 'add_user') {
+                    $message = 'Add User';
+                } else if($_GET['source'] == 'edit_user') {
+                    $message = 'Edit User';
+                } else {
+                    $message = '';
+                }
+            ?>
 
             <!-- Page Heading -->
             <div class="row">
                 <h1 class="page-header">
-                    Admin Page
-                    <small>Author</small>
+                    <?php echo $message ?>
                 </h1>
 
                 <?php 

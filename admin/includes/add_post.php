@@ -12,7 +12,7 @@
         $post_image_temp = $_FILES['image']['tmp_name'];
         $post_category = escape($_POST['post_category']);
         $post_content = escape($_POST['post_content']);
-        $post_date = date('d-m-y');
+        $post_date = escape($_POST['post_date']);
 
         move_uploaded_file($post_image_temp, "../img/$post_image");
         
@@ -95,8 +95,19 @@
     </div>
 
     <div class="form-group">
-        <label for="post_image">Post Image</label>
-        <input type="file" name="image">
+        <label for="post_date">Date</label>
+        <div class='input-group date'>
+            <input type='date' class="form-control" name="post_date" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="post_image">Image</label>
+        <input class="form-control" type="file" name="image">
     </div>
 
     <div class="form-group">

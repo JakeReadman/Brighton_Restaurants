@@ -60,8 +60,7 @@
             <!-- Page Heading -->
             <div class="row">
                 <h1 class="page-header">
-                    Admin Page
-                    <small>Author</small>
+                    Edit Profile
                 </h1>
 
                 <form action="" method="post" enctype="multipart/form-data">

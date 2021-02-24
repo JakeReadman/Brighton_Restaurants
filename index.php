@@ -13,6 +13,7 @@
         <!-- Restaurant Entries Column -->
         <div class="col-md-8">
 
+            <!-- Logic for limiting posts per page -->
             <?php
             
                 $per_page = 5;
@@ -59,14 +60,12 @@
                     
             ?>
 
-
-
-            <!-- First Restaurant Post -->
+            <!-- All Restaurant Posts Loop -->
             <h2>
                 <a href="post.php?p_id=<?php echo $post_id ?>"><?php echo $post_title ?></a>
             </h2>
             <p class="lead">
-                by <a
+                - <a
                     href="author_posts.php?author=<?php echo $post_author ?>&p_id=<?php echo $post_id ?>"><?php echo $post_author ?></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
@@ -88,10 +87,10 @@
 
         <!-- Restaurant Sidebar Widgets Column -->
         <?php include "includes/sidebar.php"; ?>
-        <!-- /.row -->
 
         <hr>
 
+        <!-- Pagination -->
         <ul class="pager">
             <?php 
         
