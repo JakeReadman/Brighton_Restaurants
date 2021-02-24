@@ -94,11 +94,8 @@
                                 <div class="col-xs-9 text-right">
 
                                     <?php 
-                                    
                                         $admin_count = numRowStatusQuery('users', 'user_role', 'admin');
-
                                         echo "<div class='huge'>{$admin_count}</div>";
-                                    
                                     ?>
 
                                     <div> Users</div>
@@ -124,16 +121,16 @@
                                 <div class="col-xs-9 text-right">
                                     <?php 
                                     
-                                        $category_count = numRowQuery('categories');
+                                        $restaurant_count = numRowQuery('restaurants');
 
-                                        echo "<div class='huge'>{$category_count}</div>";
+                                        echo "<div class='huge'>{$restaurant_count}</div>";
                                     
                                     ?>
-                                    <div>Categories</div>
+                                    <div>Restaurants</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="categories.php">
+                        <a href="restaurants.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -171,8 +168,8 @@
 
                         <?php 
                         
-                            $element_text = ['Active Posts', 'Draft Posts', 'Approved Comments', 'Rejected', 'Pending Comments', 'Admins', 'Subscribers', 'Categories'];
-                            $element_count = [$active_post_count, $draft_post_count, $approved_comment_count, $rejected_comment_count, $pending_comment_count, $admin_count, $user_subscriber_count, $category_count];
+                            $element_text = ['Active Posts', 'Draft Posts', 'Approved Comments', 'Rejected', 'Pending Comments', 'Admins', 'Subscribers', 'Restaurants'];
+                            $element_count = [$active_post_count, $draft_post_count, $approved_comment_count, $rejected_comment_count, $pending_comment_count, $admin_count, $user_subscriber_count, $restaurant_count];
 
                             for($i = 0; $i < count($element_count); $i++) {
                                 echo "['{$element_text[$i]}'" . " ," . "{$element_count[$i]}],";
