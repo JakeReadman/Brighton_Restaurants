@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand logo-container" href="index.php"><img class="logo m-r-5" src="img/logo/brr_logo.png"
-                    alt="logo"><span class="logo">Home</span></a>
+                    alt="logo"><span>Home</span></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
