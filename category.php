@@ -35,7 +35,7 @@
                         $post_date = date_create($row['post_date']);
                         $post_date = date_format($post_date, 'jS M Y');
                         $post_image = escape($row['post_image']);
-                        $post_content = stripslashes(substr($row['post_content'], 0, 100));
+                        $post_content = stripslashes(substr($row['post_content'], 0, 500));
                             ?>
 
 
@@ -52,7 +52,7 @@
             <img class="img-responsive" src="img/<?php echo $post_image; ?>" alt="">
             <hr>
             <p><?php echo $post_content ?></p>
-            <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id ?>">Read More <span
+            <a class="btn btn-logout" href="post.php?p_id=<?php echo $post_id ?>">Read More <span
                     class="glyphicon glyphicon-chevron-right"></span></a>
 
             <hr>

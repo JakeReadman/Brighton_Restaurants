@@ -124,20 +124,20 @@
             <hr>
             <?php if(isLoggedin()): ?>
             <div class="row like-section">
-                <p class="pull-right"><a class="<?php echo userLikedPost($selected_post_id) ? 'unlike' : 'like' ?>"
-                        href=""><span
+                <p class="pull-right m-r-15"><a
+                        class="<?php echo userLikedPost($selected_post_id) ? 'unlike' : 'like' ?>" href=""><span
                             class="m-r-5 <?php echo userLikedPost($selected_post_id) ? 'glyphicon glyphicon-thumbs-down' : 'glyphicon glyphicon-thumbs-up' ?>"></span><?php echo userLikedPost($selected_post_id) ? 'Unlike' : 'Like' ?>
                     </a></p>
             </div>
             <?php else: ?>
             <div class="row like-section-message">
-                <p class="pull-right">You need to <a href="login.php">login</a> or <a
+                <p class="pull-right m-r-15">You need to <a href="login.php">login</a> or <a
                         href="registration.php">register</a>
                     to like</p>
             </div>
             <?php endif; ?>
             <div class="row like-section">
-                <p class="pull-right">Likes: <?php echo $post_likes ?></p>
+                <p class="pull-right m-r-15">Likes: <?php echo $post_likes ?></p>
             </div>
             <div class="clearfix"></div>
 
@@ -186,8 +186,7 @@
                         <label for="comment">Your Comment</label>
                         <textarea class="form-control" name="comment_content" id="body" rows="3"></textarea>
                     </div>
-                    <button id="add-post-btn" type="submit" name="create_comment"
-                        class="btn btn-primary">Submit</button>
+                    <button id="add-post-btn" type="submit" name="create_comment" class="btn btn-logout">Submit</button>
                 </form>
             </div>
 

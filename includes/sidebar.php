@@ -8,7 +8,7 @@
                 <div class="input-group">
                     <input name="search" type="text" class="form-control">
                     <span class="input-group-btn">
-                        <button name="submit" class="btn btn-default" type="submit">
+                        <button name="submit" class="btn btn-login" type="submit">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
@@ -23,9 +23,9 @@
             <?php if(isLoggedIn()): ?>
 
             <h4>Logged in as <?php echo $_SESSION['username'] ?></h4>
-            <a href='includes/logout.php' name="logout" class="btn btn-warning">Log Out</a>
+            <a href='includes/logout.php' name="logout" class="btn btn-logout">Log Out</a>
             <?php if($_SESSION['user_role'] == 'admin'): ?>
-            <a href="admin" class="btn btn-success">Admin Page</a>
+            <a href="admin" class="btn btn-admin">Admin Page</a>
             <?php endif; ?>
             <?php else: ?>
 
@@ -34,13 +34,13 @@
                 <div class="form-group">
                     <input name="username" placeholder="Enter Username" type="text" class="form-control">
                 </div>
-                <div class="input-group">
+                <div class="input-group m-b-5">
                     <input name="password" placeholder="Enter Password" type="password" class="form-control">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" name="login" type="submit">Submit</button>
+                        <button class="btn btn-login" name="login" type="submit">Submit</button>
                     </span>
                 </div>
-                <div class="form-group">
+                <div class="form-group m-l-5 m-t-10">
                     <a href="forgot_password.php?forgot=<?php ?>">Forgot Password?</a>
                 </div>
             </form>

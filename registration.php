@@ -103,7 +103,7 @@
                                     </div>
 
                                     <input type="submit" name="submit" id="btn-login"
-                                        class="btn btn-custom btn-lg btn-block" value="Register">
+                                        class="btn btn-logout btn-lg btn-block" value="Register">
                                 </form>
 
                             </div><!-- Body-->

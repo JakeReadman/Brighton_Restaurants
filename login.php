@@ -34,9 +34,10 @@
                     <div class="panel-body">
                         <div class="text-center">
 
-
-                            <h3><i class="fa fa-user fa-4x"></i></h3>
-                            <h2 class="text-center">Login</h2>
+                            <div id="login-header">
+                                <h3><i class="fa fa-user fa-4x"></i></h3>
+                                <h2 class="text-center">Login</h2>
+                            </div>
                             <h4 class="bg-danger"><?php echo $message ?></h4>
                             <div class="panel-body">
 
@@ -65,7 +66,7 @@
 
                                     <div class="form-group">
 
-                                        <input name="login" class="btn btn-lg btn-primary btn-block" value="Login"
+                                        <input name="login" class="btn btn-lg btn-logout btn-block" value="Login"
                                             type="submit">
                                     </div>
 
