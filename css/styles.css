@@ -104,6 +104,21 @@ p {
   border: none;
 }
 
+#main-nav .logo-container {
+  display: flex;
+  flex-direction: row;
+}
+
+#main-nav .logo-container span {
+  clear: left;
+  display: block;
+}
+
+#main-nav .logo {
+  height: 170%;
+  padding: 0;
+}
+
 #main-nav .navbar-nav > li > a,
 #main-nav .navbar-brand {
   color: var(--heading-color);

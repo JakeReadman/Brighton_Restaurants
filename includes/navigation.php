@@ -9,7 +9,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Home</a>
+            <a class="navbar-brand logo-container" href="index.php"><img class="logo m-r-5" src="img/logo/brr_logo.png"
+                    alt="logo"><span class="logo">Home</span></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -75,7 +76,7 @@
                         } else {
                 ?>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"> </i>
+                    <a href="#" class="dropdown-toggle m-r-5" data-toggle="dropdown"><i class="fa fa-user m-r-5"> </i>
                         <?php echo $_SESSION['username'] ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <?php
