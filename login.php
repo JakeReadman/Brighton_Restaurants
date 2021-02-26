@@ -66,7 +66,7 @@
 
                                     <div class="form-group">
 
-                                        <input name="login" class="btn btn-lg btn-logout btn-block" value="Login"
+                                        <input name="login" class="btn btn-lg btn-1 btn-block" value="Login"
                                             type="submit">
                                     </div>
 

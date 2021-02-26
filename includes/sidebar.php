@@ -23,9 +23,9 @@
             <?php if(isLoggedIn()): ?>
 
             <h4>Logged in as <?php echo $_SESSION['username'] ?></h4>
-            <a href='includes/logout.php' name="logout" class="btn btn-logout">Log Out</a>
+            <a href='includes/logout.php' name="logout" class="btn btn-1">Log Out</a>
             <?php if($_SESSION['user_role'] == 'admin'): ?>
-            <a href="admin" class="btn btn-admin">Admin Page</a>
+            <a href="admin" class="btn btn-2">Admin Page</a>
             <?php endif; ?>
             <?php else: ?>
 

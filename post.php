@@ -106,10 +106,11 @@
                 <small><?php echo $published_message ?></small>
             </h1>
             <p class="lead">
-                - <a
-                    href="author_posts.php?author=<?php echo $post_author ?>&p_id=<?php echo $selected_post_id ?>"><?php echo $post_author ?></a>
+                <a href="author_posts.php?author=<?php echo $post_author ?>&p_id=<?php echo $selected_post_id ?>">-
+                    <?php echo $post_author ?></a>
             </p>
-            <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
+            <p class="publish-date"><span class="glyphicon glyphicon-time"></span> Published <?php echo $post_date ?>
+            </p>
             <hr>
             <img class="img-responsive" src="img/<?php echo imagePlaceholder($post_image); ?>" alt="">
             <hr>
@@ -186,7 +187,7 @@
                         <label for="comment">Your Comment</label>
                         <textarea class="form-control" name="comment_content" id="body" rows="3"></textarea>
                     </div>
-                    <button id="add-post-btn" type="submit" name="create_comment" class="btn btn-logout">Submit</button>
+                    <button id="add-post-btn" type="submit" name="create_comment" class="btn btn-1">Submit</button>
                 </form>
             </div>
 
