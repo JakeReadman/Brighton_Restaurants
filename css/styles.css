@@ -4,6 +4,7 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+/* Colour Variables */
 :root {
   --main-bg-color: #eae7dc;
   --main-color: #8e8d8a;
@@ -13,70 +14,13 @@
   --well-color: #dddad0;
 }
 
+/* General */
+
 body {
   padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
   font-family: "Barlow Semi Condensed", sans-serif;
   background-color: var(--main-bg-color);
   color: var(--main-color);
-}
-
-h1,
-h2,
-h3,
-h4 {
-  color: var(--heading-color);
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-weight: 300;
-}
-
-a {
-  color: var(--link-color);
-}
-
-a:hover {
-  text-decoration: none;
-  color: var(--secondary-color);
-}
-
-.pager {
-  display: flex;
-  justify-content: space-around;
-  margin-left: 40%;
-  margin-right: 40%;
-}
-
-.pager li .page-num {
-  color: var(--link-color) !important;
-}
-
-.pager li .page-num:hover {
-  background-color: var(--link-color) !important;
-  color: var(--secondary-color) !important;
-}
-
-.pager li .active-link {
-  background-color: var(--secondary-color) !important;
-  color: var(--main-color) !important;
-}
-
-footer {
-  margin: 50px 0;
-}
-
-.btn-login {
-  background-color: var(--main-color);
-  color: var(--main-bg-color);
-}
-
-.btn-logout {
-  background-color: var(--heading-color);
-  color: var(--main-bg-color);
-}
-
-.btn-admin {
-  background-color: var(--link-color);
-  color: var(--main-bg-color);
 }
 
 .m-l-5 {
@@ -99,21 +43,23 @@ footer {
   margin-top: 10px;
 }
 
-.like-section {
-  font-size: 18px;
+h1,
+h2,
+h3,
+h4 {
+  color: var(--heading-color);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-weight: 300;
+}
+
+a {
   color: var(--link-color);
 }
 
-.like-section-message {
-  font-size: 13px;
-}
-
-.well {
-  background-color: var(--well-color);
-}
-
-div.input-group {
-  background-color: var(--main-bg-color);
+a:hover {
+  text-decoration: none;
+  color: var(--secondary-color);
 }
 
 img {
@@ -125,6 +71,27 @@ p {
   font-size: 16px;
 }
 
+.well {
+  background-color: var(--well-color);
+}
+
+/* Buttons */
+.btn-3 {
+  background-color: var(--main-color);
+  color: var(--main-bg-color);
+}
+
+.btn-logout {
+  background-color: var(--heading-color);
+  color: var(--main-bg-color);
+}
+
+.btn-admin {
+  background-color: var(--link-color);
+  color: var(--main-bg-color);
+}
+
+/* Navbar */
 #main-nav {
   background-color: var(--secondary-color);
   border: none;
@@ -145,7 +112,49 @@ p {
   background-color: var(--main-bg-color);
 }
 
+/* Forms */
+div.input-group {
+  background-color: var(--main-bg-color);
+}
+
 #login-form .input-group-addon {
   background-color: var(--heading-color);
   color: var(--main-bg-color);
+}
+
+/* Likes section on post.php */
+.like-section {
+  font-size: 18px;
+  color: var(--link-color);
+}
+
+.like-section-message {
+  font-size: 13px;
+}
+
+/* Pagination */
+.pager {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+
+.pager li .page-num {
+  color: var(--link-color) !important;
+}
+
+.pager li .page-num:hover {
+  background-color: var(--link-color) !important;
+  color: var(--secondary-color) !important;
+}
+
+.pager li .active-link {
+  background-color: var(--secondary-color) !important;
+  color: var(--main-color) !important;
+}
+
+/* Footer */
+footer {
+  margin: 50px 0;
 }

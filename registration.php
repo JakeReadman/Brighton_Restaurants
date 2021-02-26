@@ -102,8 +102,8 @@
                                         </div>
                                     </div>
 
-                                    <input type="submit" name="submit" id="btn-login"
-                                        class="btn btn-logout btn-lg btn-block" value="Register">
+                                    <input type="submit" name="submit" class="btn btn-logout btn-lg btn-block"
+                                        value="Register">
                                 </form>
 
                             </div><!-- Body-->

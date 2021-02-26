@@ -8,7 +8,7 @@
                 <div class="input-group">
                     <input name="search" type="text" class="form-control">
                     <span class="input-group-btn">
-                        <button name="submit" class="btn btn-login" type="submit">
+                        <button name="submit" class="btn btn-3" type="submit">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
@@ -37,7 +37,7 @@
                 <div class="input-group m-b-5">
                     <input name="password" placeholder="Enter Password" type="password" class="form-control">
                     <span class="input-group-btn">
-                        <button class="btn btn-login" name="login" type="submit">Submit</button>
+                        <button class="btn btn-3" name="login" type="submit">Submit</button>
                     </span>
                 </div>
                 <div class="form-group m-l-5 m-t-10">
