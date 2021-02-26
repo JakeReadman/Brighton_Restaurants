@@ -91,7 +91,7 @@
                         $post_date = date_create($row['post_date']);
                         $post_date = date_format($post_date, 'jS M Y');
                         $post_image = escape($row['post_image']);
-                        $post_content = escape($row['post_content']);
+                        $post_content = stripslashes(escape($row['post_content']));
                         $post_likes = escape($row['post_likes']);
                         $post_status = escape($row['post_status']);
 

@@ -33,9 +33,10 @@
                             $post_id = escape($row['post_id']);
                             $post_title = escape($row['post_title']);
                             $post_author = escape($row['post_author']);
-                            $post_date = escape($row['post_date']);
+                            $post_date = date_create($row['post_date']);
+                            $post_date = date_format($post_date, 'jS M Y');
                             $post_image = escape($row['post_image']);
-                            $post_content = escape($row['post_content']);
+                            $post_content = stripslashes(escape($row['post_content']));
                     ?>
 
 
@@ -47,7 +48,7 @@
                 by <a
                     href="author_posts.php?author=<?php echo $post_author ?>&p_id=<?php echo $post_id ?>"><?php echo $post_author ?></a>
             </p>
-            <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
+            <p><span class="glyphicon glyphicon-time"></span> Published <?php echo $post_date ?></p>
             <hr>
             <img class="img-responsive" src="img/<?php echo imagePlaceholder($post_image); ?>" alt="">
             <hr>
