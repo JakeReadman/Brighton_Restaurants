@@ -41,6 +41,8 @@
                 if($db_user_password != $user_password) {
 
                     $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
+                } else {
+                    $hashed_password = $db_user_password;
                 }
             
                 $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', user_role = '{$user_role}', user_email = '{$user_email}', username = '{$username}', user_password = '{$hashed_password}' WHERE user_id = {$edit_user_id}"; 

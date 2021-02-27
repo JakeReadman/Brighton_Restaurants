@@ -12,14 +12,7 @@
         <div class="container">
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <!-- <li><a href="">Online Users Count: 
-        <?php
-        //  echo onlineUsers();
-         ?>
-        </a></li> -->
                 <li><a href="../index.php">Main Site</a></li>
-
-
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
                         <?php echo $_SESSION['username'] ?> <b class="caret"></b></a>

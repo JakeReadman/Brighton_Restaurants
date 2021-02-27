@@ -14,43 +14,6 @@ function escape($string) {
     return mysqli_real_escape_string($connection, $string);
 }
 
-function onlineUsers() {
-
-    if(isset($_GET['onlineusers'])) {
-
-        global $connection;
-
-        if(!$connection) {
-            
-            session_start();
-
-            include "../../includes/db.php";
-            
-            $session = session_id();
-            $time = time();
-            $timeout = $time - 05;
-    
-            $query = "SELECT * FROM online_users WHERE online_users_session = '$session'";
-            $send_query = mysqli_query($connection, $query);
-            $count = mysqli_num_rows($send_query);
-    
-            if($count === NULL || $count === 0 || $count === false) {
-                mysqli_query($connection, "INSERT INTO online_users(online_users_session, online_users_time) VALUES('$session', '$time')");
-            } else {
-                mysqli_query($connection, "UPDATE online_users SET online_users_time = '$time' WHERE online_users_session = '$session'");
-            }
-            
-            $query2 = "SELECT * FROM online_users WHERE online_users_time > '$timeout'";
-            $online_users_query =  mysqli_query($connection, $query2);
-            echo $user_count = mysqli_num_rows($online_users_query);
-
-        }        
-
-    } // get request for onlineusers
-}
-
-// onlineUsers();
-
 //Insert Restaurants Query
 function insertRestaurants() {
 
