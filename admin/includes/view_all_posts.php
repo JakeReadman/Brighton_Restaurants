@@ -98,6 +98,7 @@
                 $post_id = escape($row['post_id']);
                 $post_author = stripslashes(escape($row['post_author']));
                 $post_title = escape($row['post_title']);
+                $post_title = stripslashes($post_title);
                 $post_restaurant_id = escape($row['post_restaurant_id']);
                 $post_status = escape($row['post_status']);
                 $post_image = escape($row['post_image']);

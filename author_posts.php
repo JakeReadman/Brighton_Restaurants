@@ -26,7 +26,7 @@
                 $result = selectStatusQuery('posts', 'post_author', $selected_post_author);
 
                 while($row = mysqli_fetch_assoc($result)) {
-                    $post_title = escape($row['post_title']);
+                    $post_title = stripslashes(escape($row['post_title']));
                     $post_author = stripslashes(escape($row['post_author']));
                     $post_date = date_create($row['post_date']);
                     $post_date = date_format($post_date, 'jS M Y');

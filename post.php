@@ -86,6 +86,7 @@
 
                     while($row = mysqli_fetch_assoc($result)) {
                         $post_title = escape($row['post_title']);
+                        $post_title = stripslashes($post_title);
                         $post_restaurant_id = escape($row['post_restaurant_id']);
                         $post_author = stripslashes(escape($row['post_author']));
                         $post_date = date_create($row['post_date']);

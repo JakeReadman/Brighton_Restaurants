@@ -9,7 +9,7 @@
     while($row = mysqli_fetch_assoc($select_posts_by_id)) {
         $post_id = $row['post_id'];
         $post_author = $row['post_author'];
-        $post_title = $row['post_title'];
+        $post_title = stripslashes($row['post_title']);
         $post_restaurant_id = $row['post_restaurant_id'];
         $post_status = $row['post_status'];
         $post_image = $row['post_image'];
@@ -24,13 +24,14 @@
         $row = mysqli_fetch_array($author_query);
         
         $post_author = escape($row['author_name']);
-        $post_title = escape($_POST['post_title']);
+        $post_title = (escape($_POST['post_title']));
         $post_restaurant_id = escape($_POST['post_restaurant']);
         $post_status = escape($_POST['post_status']);
         $post_image = $_FILES['image']['name'];
         $post_image_temp = $_FILES['image']['tmp_name'];
-        $post_content = escape($_POST['post_content']);
+        $post_content = (escape($_POST['post_content']));
         $post_category = escape($_POST['post_category']);
+        $post_date = escape($_POST['post_date']);
 
         move_uploaded_file($post_image_temp, "../img/$post_image");
 
@@ -46,7 +47,7 @@
         $query = "UPDATE posts SET ";
         $query .="post_title  = '{$post_title}', ";
         $query .="post_restaurant_id = '{$post_restaurant_id}', ";
-        $query .="post_date   =  now(), ";
+        $query .="post_date   =  '{$post_date}', ";
         $query .="post_author = '{$post_author}', ";
         $query .="post_status = '{$post_status}', ";
         $query .="post_category   = '{$post_category}', ";
@@ -143,6 +144,16 @@
     </div>
 
     <div class="form-group">
+        <label for="post_date">Date</label>
+        <div class='input-group date'>
+            <input type='date' class="form-control" name="post_date" value="<?php echo $post_date ?>" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
         <label for="post_image">Post Image</label>
         <input type="file" name="image">
         <img class="form-control-static" src="../img/<?php echo $post_image ?>" alt="post image" width="100px">
@@ -155,7 +166,7 @@
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control" name="post_content" id="body" cols="30" rows="10"><?php echo $post_content ?>
+        <textarea class="form-control" name="post_content" id="body" cols="30" rows="10"><?php echo stripslashes($post_content) ?>
          </textarea>
     </div>
 

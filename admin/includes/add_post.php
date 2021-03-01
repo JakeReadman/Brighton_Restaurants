@@ -5,7 +5,7 @@
         $row = mysqli_fetch_array($author_query);
         
         $post_author = escape($row['author_name']);
-        $post_title = escape($_POST['title']);
+        $post_title = stripslashes(escape($_POST['title']));
         $post_restaurant_id = escape($_POST['post_restaurant']);
         $post_status = escape($_POST['post_status']);
         $post_image = $_FILES['image']['name'];
