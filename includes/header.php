@@ -1,5 +1,8 @@
 <?php ob_start(); ?>
 <?php session_start(); ?>
+<!-- Database Connection -->
+<?php include "includes/db.php"; ?>
+<!-- Functions -->
 <?php include "admin/includes/functions.php" ?>
 
 <!DOCTYPE html>

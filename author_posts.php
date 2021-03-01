@@ -1,5 +1,4 @@
 <!-- Database Connection -->
-<?php include "includes/db.php"; ?>
 <!-- Header -->
 <?php include "includes/header.php"; ?>
 <!-- Navigation -->

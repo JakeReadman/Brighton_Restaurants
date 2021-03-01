@@ -1,3 +1,5 @@
+    <?php ob_start(); ?>
+
     <div class="col-md-4">
 
         <!-- Blog Search Well -->

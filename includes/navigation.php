@@ -1,3 +1,5 @@
+<?php ob_start(); ?>
+
 <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->

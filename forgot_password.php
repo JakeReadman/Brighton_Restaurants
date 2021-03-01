@@ -1,5 +1,5 @@
 <?php use PHPMailer\PHPMailer\PHPMailer; ?>
-<?php  include "includes/db.php"; ?>
+<!-- DB Connection -->
 <?php  include "includes/header.php"; ?>
 
 <?php
