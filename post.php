@@ -114,7 +114,7 @@
             <hr>
             <img class="img-responsive" src="img/<?php echo imagePlaceholder($post_image); ?>" alt="">
             <hr>
-            <p><?php echo $post_content ?></p>
+            <p class='post-content'><?php echo $post_content ?></p>
             <?php 
                 $select_restaurant = selectStatusQuery('restaurants', 'restaurant_id', $post_restaurant_id); 
                 $row = mysqli_fetch_assoc($select_restaurant);

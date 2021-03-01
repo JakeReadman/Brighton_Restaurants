@@ -9,7 +9,7 @@
     while($row = mysqli_fetch_assoc($select_posts_by_id)) {
         $post_id = $row['post_id'];
         $post_author = $row['post_author'];
-        $post_title = stripslashes($row['post_title']);
+        $post_title = $row['post_title'];
         $post_restaurant_id = $row['post_restaurant_id'];
         $post_status = $row['post_status'];
         $post_image = $row['post_image'];
@@ -24,7 +24,7 @@
         $row = mysqli_fetch_array($author_query);
         
         $post_author = escape($row['author_name']);
-        $post_title = (escape($_POST['post_title']));
+        $post_title = escape($_POST['post_title']);
         $post_restaurant_id = escape($_POST['post_restaurant']);
         $post_status = escape($_POST['post_status']);
         $post_image = $_FILES['image']['name'];
@@ -70,7 +70,7 @@
 
     <div class="form-group">
         <label for="title">Post Title</label>
-        <input type="text" value="<?php echo $post_title ?>" class="form-control" name="post_title">
+        <input type="text" value="<?php echo stripslashes($post_title); ?>" class="form-control" name="post_title">
     </div>
 
     <div class="form-group">
