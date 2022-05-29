@@ -1,4 +1,7 @@
 <?php ob_start(); ?>
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+?>
 
 <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">

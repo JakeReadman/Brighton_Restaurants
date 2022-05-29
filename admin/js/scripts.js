@@ -23,15 +23,4 @@ $(document).ready(function () {
   $("#load-screen")
     .delay(500)
     .fadeOut(1000, () => $(this).remove());
-
-  function loadOnlineUsers() {
-    $.get("includes/functions.php?onlineusers=result", function (data) {
-      $(".onlineusers").text(data);
-    });
-  }
-
-  setInterval(function () {
-    loadOnlineUsers();
-  }),
-    500;
 });

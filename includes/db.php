@@ -1,4 +1,7 @@
 <?php ob_start();
+if(session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 $db['db_host'] = 'localhost';
 $db['db_user'] = 'root';

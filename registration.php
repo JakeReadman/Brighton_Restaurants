@@ -2,6 +2,8 @@
 
 <?php 
 
+    checkLoggedInAndRedirect('index.php');
+
     if(isset($_POST['submit'])) {
         $username = escape($_POST['username']);
         $email = escape($_POST['email']);

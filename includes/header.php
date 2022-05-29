@@ -1,9 +1,11 @@
 <?php ob_start(); ?>
-<?php session_start(); ?>
 <!-- Database Connection -->
 <?php include "includes/db.php"; ?>
 <!-- Functions -->
 <?php include "admin/includes/functions.php" ?>
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +38,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 </head>
 
 <body>

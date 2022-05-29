@@ -1,4 +1,7 @@
     <?php ob_start(); ?>
+    <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+?>
 
     <div class="col-md-4">
 
@@ -22,11 +25,11 @@
         <!-- Login Form -->
         <div class="well">
 
-            <?php if(isLoggedIn()): ?>
+            <?php if(isset($_SESSION['user_role'])): ?>
 
             <h4>Logged in as <?php echo $_SESSION['username'] ?></h4>
             <a href='includes/logout.php' name="logout" class="btn btn-1">Log Out</a>
-            <?php if($_SESSION['user_role'] == 'admin'): ?>
+            <?php if($_SESSION['user_role'] === 'admin'): ?>
             <a href="admin" class="btn btn-2">Admin Page</a>
             <?php endif; ?>
             <?php else: ?>
